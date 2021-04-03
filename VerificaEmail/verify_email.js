@@ -11,6 +11,7 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 
+//rand va inserito in DB con la mail e ritirato fuori dalla verify
 
 var rand, mailOptions, host, link;
 
