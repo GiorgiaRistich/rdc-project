@@ -1,6 +1,4 @@
 var request = require('request');
-//var app = express();
-//app.use(bodyParser.urlencoded({ extended: false }));
 
 var lastupdate = '0'
 let token='1770679251:AAGP7RfhFfqKiDgdbhWRTzpSIoVMPp5HP1k'
