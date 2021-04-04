@@ -6,7 +6,8 @@ var nodemailer = require("nodemailer");
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
-
+var cookieParser = require('cookie-parser')
+app.use(cookieParser())
 
 let smtpTransport = nodemailer.createTransport({
     service: "Gmail",
@@ -33,7 +34,7 @@ app.post('/form_iniziale', function(req, res){
                 url: database+'patients/'+info.CF, //URL to hit
                 method: 'GET'
             }, function(error2, response2, body2){
-                
+                var datiinmemoria = JSON.parse(body2)
                 rand=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
                 if (response2.statusCode==404){
                     paz = {
@@ -49,8 +50,8 @@ app.post('/form_iniziale', function(req, res){
                         method: 'PUT',
                         body: JSON.stringify(paz)
                     }, function(error3, response3, body3){
-                        if (error) {
-                            console.log(error)
+                        if (error3) {
+                            console.log(error3)
                         }
                         else {
                             res.redirect(host+'/sendverify?CF='+info.CF)
@@ -89,14 +90,113 @@ app.post('/form_iniziale', function(req, res){
 
                     }
                     else if (paziente.booked==true){
-                        res.redirect(host+'/visualizzaprenotazione?CF='+info.CF)
+                        if (datiinmemoria.name==info.name && datiinmemoria.mail==info.mail){
+                            
+                            request({
+                                url: database+'cookies/'+info.CF, //URL to hit
+                                method: 'GET'
+                            }, function(error3, response3, body3){
+                                
+                                var info3 = JSON.parse(body3);
+                                randcookie=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
+
+                                if (response3.statusCode==404) {
+                                    info3 = {
+                                        "cookie":randcookie
+                                    }
+                                    request({
+                                        url: database+'cookies/'+info.CF,
+                                        method: 'PUT',
+                                        body: JSON.stringify(info3)
+                                    }, function(error4, response4, body4){
+                                        if(error4) {
+                                            console.log(error4);
+                                        } else {
+                                            res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                            res.redirect(host+'/visualizzaprenotazione?CF='+info.CF)
+                                        }
+                                    });
+                                }
+                                else if (response3.statusCode==200){
+                                    info3.cookie=randcookie
+                                    request({
+                                        url: database+'cookies/'+info.CF,
+                                        method: 'PUT',
+                                        body: JSON.stringify(info3)
+                                    }, function(error4, response4, body4){
+                                        if(error4) {
+                                            console.log(error4);
+                                        } else {
+                                            res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                            res.redirect(host+'/visualizzaprenotazione?CF='+info.CF)
+                                        }
+                                    });
+                                }
+                                else {
+                                    console.log(error3)
+                                }
+                                
+                            });
+                        }
+                        else {
+                            res.send("ricontrolla i dati inseriti")
+                        }
                     }
                     else {
-                        res.redirect(host+'/paginadiprenotazione?CF='+info.CF)
+                        if (datiinmemoria.name==info.name && datiinmemoria.mail==info.mail){
+                            
+                            request({
+                                url: database+'cookies/'+info.CF, //URL to hit
+                                method: 'GET'
+                            }, function(error3, response3, body3){
+                                
+                                var info3 = JSON.parse(body3);
+                                randcookie=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
+
+                                if (response3.statusCode==404) {
+                                    info3 = {
+                                        "cookie":randcookie
+                                    }
+                                    request({
+                                        url: database+'cookies/'+info.CF,
+                                        method: 'PUT',
+                                        body: JSON.stringify(info3)
+                                    }, function(error4, response4, body4){
+                                        if(error4) {
+                                            console.log(error4);
+                                        } else {
+                                            res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                            res.redirect(host+'/paginadiprenotazione?CF='+info.CF)
+                                        }
+                                    });
+                                }
+                                else if (response3.statusCode==200){
+                                    info3.cookie=randcookie
+                                    request({
+                                        url: database+'cookies/'+info.CF,
+                                        method: 'PUT',
+                                        body: JSON.stringify(info3)
+                                    }, function(error4, response4, body4){
+                                        if(error4) {
+                                            console.log(error4);
+                                        } else {
+                                            res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                            res.redirect(host+'/paginadiprenotazione?CF='+info.CF)
+                                        }
+                                    });
+                                }
+                                else {
+                                    console.log(error3)
+                                }                        
+                            });
+                        }
+                        else {
+                            res.send("ricontrolla i dati inseriti")
+                        }
                     }
                 }
                 else {
-                    console.log(error)
+                    console.log(error2)
                 }
             })
         }
@@ -195,6 +295,51 @@ app.get('/verify',function(req,res){
                             if(error3) {
                                 console.log(error3);
                             } else {
+                                request({
+                                    url: database+'cookies/'+paziente._id, //URL to hit
+                                    method: 'GET'
+                                }, function(error4, response4, body4){
+                                    
+                                    var info3 = JSON.parse(body4);
+                                    randcookie=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
+    
+                                    if (response3.statusCode==404) {
+                                        info3 = {
+                                            "cookie":randcookie
+                                        }
+                                        request({
+                                            url: database+'cookies/'+paziente._id,
+                                            method: 'PUT',
+                                            body: JSON.stringify(info3)
+                                        }, function(error5, response5, body5){
+                                            if(error5) {
+                                                console.log(error5);
+                                            } else {
+                                                res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                                res.redirect(host+'/paginadiprenotazione?CF='+paziente._id)
+                                            }
+                                        });
+                                    }
+                                    else if (response4.statusCode==200){
+                                        info3.cookie=randcookie
+                                        request({
+                                            url: database+'cookies/'+paziente._id,
+                                            method: 'PUT',
+                                            body: JSON.stringify(info3)
+                                        }, function(error5, response5, body5){
+                                            if(error4) {
+                                                console.log(error5);
+                                            } else {
+                                                res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                                res.redirect(host+'/paginadiprenotazione?CF='+paziente._id)
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        console.log(error4)
+                                    }                        
+                                });
+
                                 res.redirect(host+'/paginadiprenotazione?CF='+paziente._id)
                             }
                         });
