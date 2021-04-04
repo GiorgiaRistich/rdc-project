@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser')
 app.use(cookieParser())
 
 app.get('/setcookie', function(req, res){
-    res.cookie('cookietest', 'valorecookie', {maxAge: 15000}) //in ms
+    res.cookie('cookietest', 'valorecookie', {maxAge: 3600000}) //in ms
     res.send("ho settato i cookie")
 })
 

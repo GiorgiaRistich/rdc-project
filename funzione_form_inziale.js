@@ -112,7 +112,7 @@ app.post('/form_iniziale', function(req, res){
                                         if(error4) {
                                             console.log(error4);
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                            res.cookie('cookie', randcookie, {maxAge: 3600000})
                                             res.redirect(host+'/visualizzaprenotazione?CF='+info.CF)
                                         }
                                     });
@@ -127,7 +127,7 @@ app.post('/form_iniziale', function(req, res){
                                         if(error4) {
                                             console.log(error4);
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                            res.cookie('cookie', randcookie, {maxAge: 3600000})
                                             res.redirect(host+'/visualizzaprenotazione?CF='+info.CF)
                                         }
                                     });
@@ -165,7 +165,7 @@ app.post('/form_iniziale', function(req, res){
                                         if(error4) {
                                             console.log(error4);
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                            res.cookie('cookie', randcookie, {maxAge: 3600000})
                                             res.redirect(host+'/paginadiprenotazione?CF='+info.CF)
                                         }
                                     });
@@ -180,7 +180,7 @@ app.post('/form_iniziale', function(req, res){
                                         if(error4) {
                                             console.log(error4);
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                            res.cookie('cookie', randcookie, {maxAge: 3600000})
                                             res.redirect(host+'/paginadiprenotazione?CF='+info.CF)
                                         }
                                     });
@@ -243,8 +243,8 @@ app.get('/send',function(req,res){
                 from: '"Verifica la mail" <rdcprogetto@gmail.com>',
                 to : paziente.mail,
                 subject : "Per favore conferma il tuo account mail",
-                html : "Buongiorno,<br> se i suoi dati sono corretti clicchi sul link, <br>"+
-                    "Altrimenti ripeta la procedura di prenotazione.<br>"+
+                html : "Buongiorno,<br> se i suoi dati sono corretti clicchi sul link. <br>"+
+                    "Altrimenti ripeta la procedura di prenotazione.<br><br>"+
                     "Nome: "+paziente.name + "<br>Codice Fiscale: "+paziente._id+"<br><br>"+
                     "<a href="+link+">Click here to verify</a>"
             }
@@ -303,7 +303,7 @@ app.get('/verify',function(req,res){
                                     var info3 = JSON.parse(body4);
                                     randcookie=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
     
-                                    if (response3.statusCode==404) {
+                                    if (response4.statusCode==404) {
                                         info3 = {
                                             "cookie":randcookie
                                         }
@@ -315,7 +315,7 @@ app.get('/verify',function(req,res){
                                             if(error5) {
                                                 console.log(error5);
                                             } else {
-                                                res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                                res.cookie('cookie', randcookie, {maxAge: 3600000})
                                                 res.redirect(host+'/paginadiprenotazione?CF='+paziente._id)
                                             }
                                         });
@@ -327,10 +327,10 @@ app.get('/verify',function(req,res){
                                             method: 'PUT',
                                             body: JSON.stringify(info3)
                                         }, function(error5, response5, body5){
-                                            if(error4) {
+                                            if(error5) {
                                                 console.log(error5);
                                             } else {
-                                                res.cookie('cookie', randcookie, {maxAge: 36000000})
+                                                res.cookie('cookie', randcookie, {maxAge: 3600000})
                                                 res.redirect(host+'/paginadiprenotazione?CF='+paziente._id)
                                             }
                                         });
@@ -339,8 +339,6 @@ app.get('/verify',function(req,res){
                                         console.log(error4)
                                     }                        
                                 });
-
-                                res.redirect(host+'/paginadiprenotazione?CF='+paziente._id)
                             }
                         });
                     }
