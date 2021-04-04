@@ -274,75 +274,68 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
             paziente=JSON.parse(body)  
             if(req.query.id==paziente.codverifica){ //se il codice nel link di verifica coincide con quello nel database
 
-                request({
+                var info = paziente;
+                info.verificato=true //setta il verificato nella variabile info
+                
+                request({ //aggiorna il paziente aggiungendo il verificato nel database
                     url: database+'patients/'+paziente._id,
-                    method: 'GET'
+                    method: 'PUT',
+                    body: JSON.stringify(info)
                 }, function(error2, response2, body2){
                     if(error2) {
                         console.log(error2);
                     } else {
-                        var info = JSON.parse(body);
-                        info.verificato=true
-                        
-                        request({
-                            url: database+'patients/'+paziente._id,
-                            method: 'PUT',
-                            body: JSON.stringify(info)
+                        request({ //controllo se ha già un cookie
+                            url: database+'cookies/'+paziente._id,
+                            method: 'GET'
                         }, function(error3, response3, body3){
-                            if(error3) {
-                                console.log(error3);
-                            } else {
-                                request({
+                            
+                            var info2 = JSON.parse(body3);
+                            randcookie=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
+
+                            if (response3.statusCode==404) { //se non lo ha
+                                info2 = {
+                                    "cookie":randcookie
+                                }
+                                request({ //lo aggiungo nel database cookies
                                     url: database+'cookies/'+paziente._id,
-                                    method: 'GET'
+                                    method: 'PUT',
+                                    body: JSON.stringify(info2)
                                 }, function(error4, response4, body4){
-                                    
-                                    var info3 = JSON.parse(body4);
-                                    randcookie=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
-    
-                                    if (response4.statusCode==404) {
-                                        info3 = {
-                                            "cookie":randcookie
-                                        }
-                                        request({
-                                            url: database+'cookies/'+paziente._id,
-                                            method: 'PUT',
-                                            body: JSON.stringify(info3)
-                                        }, function(error5, response5, body5){
-                                            if(error5) {
-                                                console.log(error5);
-                                            } else {
-                                                res.cookie('cookie', randcookie, {maxAge: 3600000})
-                                                res.redirect(host+'/paginadiprenotazione?CF='+paziente._id)
-                                            }
-                                        });
+                                    if(error4) {
+                                        console.log(error4);
+                                    } else {
+                                        res.cookie('cookie', randcookie, {maxAge: 3600000}) //mando il cookie
+                                        res.redirect(host+'/paginadiprenotazione?CF='+paziente._id) //reindirizzo a paginadiprenotazione
                                     }
-                                    else if (response4.statusCode==200){
-                                        info3.cookie=randcookie
-                                        request({
-                                            url: database+'cookies/'+paziente._id,
-                                            method: 'PUT',
-                                            body: JSON.stringify(info3)
-                                        }, function(error5, response5, body5){
-                                            if(error5) {
-                                                console.log(error5);
-                                            } else {
-                                                res.cookie('cookie', randcookie, {maxAge: 3600000})
-                                                res.redirect(host+'/paginadiprenotazione?CF='+paziente._id)
-                                            }
-                                        });
-                                    }
-                                    else {
-                                        console.log(error4)
-                                    }                        
                                 });
                             }
+                            else if (response3.statusCode==200){ //se ha già un cookie assegnato nel database
+                                info2.cookie=randcookie
+                                request({ //aggiorno il cookie nel database
+                                    url: database+'cookies/'+paziente._id,
+                                    method: 'PUT',
+                                    body: JSON.stringify(info2)
+                                }, function(error4, response4, body4){
+                                    if(error4) {
+                                        console.log(error4);
+                                    } else {
+                                        res.cookie('cookie', randcookie, {maxAge: 3600000}) //invio il nuovo cookie
+                                        res.redirect(host+'/paginadiprenotazione?CF='+paziente._id) //reindirizzo a paginadiprenotazione
+                                    }
+                                });
+                            }
+                            else {
+                                console.log(error3)
+                            }                        
                         });
                     }
                 });
+                    
+                
 
             }
-            else{
+            else{ //se il codice di verifica del link non coincide con quello nel mio database
                 res.end("<h1>Bad Request</h1>");
             }
         }
