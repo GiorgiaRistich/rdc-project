@@ -3,11 +3,13 @@ var express = require('express');
 var request = require('request');
 var bodyParser = require("body-parser");
 var nodemailer = require("nodemailer");
+var logger=require('./logger');
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 var cookieParser = require('cookie-parser')
 app.use(cookieParser())
+
 
 let smtpTransport = nodemailer.createTransport({    //necessario per l'invio di mail
     service: "Gmail",
@@ -51,7 +53,8 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                         body: JSON.stringify(paz)
                     }, function(error3, response3, body3){
                         if (error3) {
-                            console.log(error3)
+                            logger.log("error", JSON.parse(response3))
+                            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                         }
                         else {
                             res.redirect(host+'/sendverify?CF='+info.CF)    //reindirizza a sendverify
@@ -68,7 +71,8 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                             method: 'GET'
                         }, function(error3, response3, body3){
                             if(error3) {
-                                console.log(error3);
+                                logger.log("error", JSON.parse(response3));
+                                res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                             } else {
                                 var info3 = JSON.parse(body3);  //aggiorna i dati in database con i nuovi inseriti
                                 info3.name=info.name
@@ -80,7 +84,8 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                     body: JSON.stringify(info3)
                                 }, function(error4, response4, body4){
                                     if(error4) {
-                                        console.log(error4);
+                                        logger.log("error", JSON.parse(response4))
+                                        res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                     } else {    //reindirizza a sendverify
                                         res.redirect(host+'/sendverify?CF='+info.CF)
                                     }
@@ -110,7 +115,8 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                         body: JSON.stringify(info3)
                                     }, function(error4, response4, body4){
                                         if(error4) {
-                                            console.log(error4);
+                                            logger.log("error", JSON.parse(response4))
+                                            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
                                             res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
                                             res.redirect(host+'/visualizzaprenotazione?CF='+info.CF) //reindirizza a visualizzaprenotazione
@@ -125,7 +131,8 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                         body: JSON.stringify(info3)
                                     }, function(error4, response4, body4){
                                         if(error4) {
-                                            console.log(error4);
+                                            logger.log("error", JSON.parse(response4))
+                                            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
                                             res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
                                             res.redirect(host+'/visualizzaprenotazione?CF='+info.CF) //reindirizza a visualizzaprenotazione
@@ -133,7 +140,8 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                     });
                                 }
                                 else {
-                                    console.log(error3)
+                                    logger.log("error", JSON.parse(response3))
+                                    res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                 }
                                 
                             });
@@ -163,7 +171,8 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                         body: JSON.stringify(info3)
                                     }, function(error4, response4, body4){
                                         if(error4) {
-                                            console.log(error4);
+                                            logger.log("error", JSON.parse(response4))
+                                            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
                                             res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
                                             res.redirect(host+'/paginadiprenotazione?CF='+info.CF) //reindirizza a paginadiprenotazione
@@ -178,7 +187,8 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                         body: JSON.stringify(info3)
                                     }, function(error4, response4, body4){
                                         if(error4) {
-                                            console.log(error4);
+                                            logger.log("error", JSON.parse(response4))
+                                            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
                                             res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
                                             res.redirect(host+'/paginadiprenotazione?CF='+info.CF) //reindirizza a pagina di prenotazione
@@ -186,7 +196,9 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                     });
                                 }
                                 else {
-                                    console.log(error3)
+                                    logger.log("error", JSON.parse(response3))
+                                    res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+
                                 }                        
                             });
                         }
@@ -196,13 +208,14 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                     }
                 }
                 else {
-                    console.log(error2)
+                    logger.log("error", JSON.parse(response3))
+                    res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                 }
             })
         }
         else {
-            console.log(error)
-            res.send("Errore sconosciuto")
+            logger.log("error", "errore GET in cf_medico")
+            res.send("Errore sconosciuto") //fare pagina html specifica e quindi usa res.redirect
         }
     })
 
@@ -231,7 +244,8 @@ app.get('/send',function(req,res){ //manda la mail di verifica con nodemailer
         method: 'GET'
     }, function(error, response, body){
         if (error) {
-            console.log(error)
+            logger.log("error", JSON.parse(response))
+            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
         }
         else {
             paziente=JSON.parse(body)
@@ -248,8 +262,8 @@ app.get('/send',function(req,res){ //manda la mail di verifica con nodemailer
             
             smtpTransport.sendMail(mailOptions, function(error, response){
                 if(error){
-                    console.log(error);
-                    res.end("errore sconosciuto");
+                    logger.log("error","errore nella funzione sendMail")
+                    res.end("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                 }
                 else{
                     res.end("Apri la mail e premi sul link di verifica");
@@ -268,7 +282,9 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
         method: 'GET'
     }, function(error, response, body){
         if (error) {
-            console.log(error)
+            logger.log("error",JSON.parse(response))
+            res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
+            
         }
         else {
             paziente=JSON.parse(body)  
@@ -283,7 +299,8 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                     body: JSON.stringify(info)
                 }, function(error2, response2, body2){
                     if(error2) {
-                        console.log(error2);
+                        logger.log("error",JSON.parse(response2))
+                        res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                     } else {
                         request({ //controllo se ha già un cookie
                             url: database+'cookies/'+paziente._id,
@@ -303,7 +320,8 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                                     body: JSON.stringify(info2)
                                 }, function(error4, response4, body4){
                                     if(error4) {
-                                        console.log(error4);
+                                        logger.log("error",JSON.parse(response4))
+                                        res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                                     } else {
                                         res.cookie('cookie', randcookie, {maxAge: 3600000}) //mando il cookie
                                         res.redirect(host+'/paginadiprenotazione?CF='+paziente._id) //reindirizzo a paginadiprenotazione
@@ -318,7 +336,8 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                                     body: JSON.stringify(info2)
                                 }, function(error4, response4, body4){
                                     if(error4) {
-                                        console.log(error4);
+                                        logger.log("error",JSON.parse(response4))
+                                        res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                                     } else {
                                         res.cookie('cookie', randcookie, {maxAge: 3600000}) //invio il nuovo cookie
                                         res.redirect(host+'/paginadiprenotazione?CF='+paziente._id) //reindirizzo a paginadiprenotazione
@@ -326,7 +345,8 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                                 });
                             }
                             else {
-                                console.log(error3)
+                                logger.log("error",JSON.parse(response3))
+                                res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                             }                        
                         });
                     }
