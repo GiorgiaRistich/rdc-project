@@ -31,7 +31,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
             res.redirect(host+'/noCF')
         }
         else if (response.statusCode == 200) {  //se è un assistito controlla se è già registrato
-            
+            logger.log("info","si controlla che l'assistito si sia registrato")
             request({   //chiama il database dei registrati
                 url: database+'patients/'+info.CF, 
                 method: 'GET'
@@ -39,6 +39,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                 var datiinmemoria = JSON.parse(body2)
                 rand=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
                 if (response2.statusCode==404){ //se non è già registrato crea l'oggetto paz
+                    logger.log("info","inserimento paziente")
                     paz = {
                         "name":info.name,
                         "mail":info.mail,
@@ -57,6 +58,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                         }
                         else {
+                            logger.log("info","pronti a verificare")
                             res.redirect(host+'/sendverify?CF='+info.CF)    //reindirizza a sendverify
                         }
                     })
@@ -95,9 +97,9 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
 
                     }
                     else if (paziente.booked==true){    //se il paziente è già registrato
+                        logger.log("info","controllo correttezza dati")
                         if (datiinmemoria.name==info.name && datiinmemoria.mail==info.mail){ //controlla correttezza dati inseriti
-                            
-                            request({   //controlla se è già stato assegnato un cookie
+                             request({   //controlla se è già stato assegnato un cookie
                                 url: database+'cookies/'+info.CF,
                                 method: 'GET'
                             }, function(error3, response3, body3){
@@ -147,6 +149,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                             });
                         }
                         else { //se è già verificato e ha inserito dati errati
+                            logger.log("info","bisogna ricontrollare i dati inseriti")
                             res.send("ricontrolla i dati inseriti")
                         }
                     }
@@ -203,6 +206,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                             });
                         }
                         else { //se è già verificato e ha inserito i dati errati
+                            logger.log("info","si deve ricontrollare i dati")
                             res.send("ricontrolla i dati inseriti")
                         }
                     }
@@ -226,12 +230,14 @@ app.get('/sendverify', function(req, res){ //chiama la send e manda il messaggio
     request({
         url:host+'/send?CF='+req.query.CF
     }, function(error, response, body){
+        logger.log("info","si deve ricontrollare la mail")
         res.send("controlla la mail")
     })
 })
 
 
 app.get('/noCF', function(req, res){ //pagina se provo a registrare un codice fiscale non di un assistito
+    logger.log("info","CF non presente")
     res.send('Impossibile prenotare, codice fiscale non presente')
 })
 
