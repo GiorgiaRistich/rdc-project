@@ -9,34 +9,34 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var cookieParser = require('cookie-parser')
 app.use(cookieParser())
 
-let smtpTransport = nodemailer.createTransport({
+let smtpTransport = nodemailer.createTransport({    //necessario per l'invio di mail
     service: "Gmail",
     auth: {
         user: "rdcprogetto@gmail.com",
         pass: "ncwkeexrfagortko"
     }
 });
-let database='http://admin:adminpass@2.236.50.195:5984/'
-let host='http://localhost:3000'
+let database='http://admin:adminpass@2.236.50.195:5984/'    //url database
+let host='http://localhost:3000'    //url host
 
-app.post('/form_iniziale', function(req, res){
-    var info = req.body
-    request({
-        url: database+'/cf_medico/'+info.CF, //URL to hit
+app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form iniziale
+    var info = req.body //CF, name, mail nel body
+    request({   //controlla se il CF è nel database degli assistiti del medico
+        url: database+'/cf_medico/'+info.CF,
         method: 'GET'
     }, function(error, response, body){
-        if (response.statusCode == 404) {
+        if (response.statusCode == 404) {   //se non è un assistito reindirizza alla pagina noCF
             res.redirect(host+'/noCF')
         }
-        else if (response.statusCode == 200) {
+        else if (response.statusCode == 200) {  //se è un assistito controlla se è già registrato
             
-            request({
-                url: database+'patients/'+info.CF, //URL to hit
+            request({   //chiama il database dei registrati
+                url: database+'patients/'+info.CF, 
                 method: 'GET'
             }, function(error2, response2, body2){
                 var datiinmemoria = JSON.parse(body2)
                 rand=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
-                if (response2.statusCode==404){
+                if (response2.statusCode==404){ //se non è già registrato crea l'oggetto paz
                     paz = {
                         "name":info.name,
                         "mail":info.mail,
@@ -45,8 +45,8 @@ app.post('/form_iniziale', function(req, res){
                         "codverifica":rand
                     }
                     
-                    request({
-                        url: database+'patients/'+info.CF, //URL to hit
+                    request({   //salva l'oggetto paz con una PUT sul database dei registrati
+                        url: database+'patients/'+info.CF,
                         method: 'PUT',
                         body: JSON.stringify(paz)
                     }, function(error3, response3, body3){
@@ -54,34 +54,34 @@ app.post('/form_iniziale', function(req, res){
                             console.log(error3)
                         }
                         else {
-                            res.redirect(host+'/sendverify?CF='+info.CF)
+                            res.redirect(host+'/sendverify?CF='+info.CF)    //reindirizza a sendverify
                         }
                     })
                     
                 }
-                else if (response.statusCode==200){
+                else if (response.statusCode==200){ //se è già registrato
                     paziente=JSON.parse(body2)
-                    if (paziente.verificato==false){
+                    if (paziente.verificato==false){    //controlla se non è verificato
 
                         request({
-                            url: database+'patients/'+info.CF, //URL to hit
+                            url: database+'patients/'+info.CF,
                             method: 'GET'
                         }, function(error3, response3, body3){
                             if(error3) {
                                 console.log(error3);
                             } else {
-                                var info3 = JSON.parse(body3);
+                                var info3 = JSON.parse(body3);  //aggiorna i dati in database con i nuovi inseriti
                                 info3.name=info.name
                                 info3.mail=info.mail
                                 
-                                request({
+                                request({   //salva i nuovi dati nel database
                                     url: database+'patients/'+info.CF,
                                     method: 'PUT',
                                     body: JSON.stringify(info3)
                                 }, function(error4, response4, body4){
                                     if(error4) {
                                         console.log(error4);
-                                    } else {
+                                    } else {    //reindirizza a sendverify
                                         res.redirect(host+'/sendverify?CF='+info.CF)
                                     }
                                 });
@@ -89,22 +89,22 @@ app.post('/form_iniziale', function(req, res){
                         });
 
                     }
-                    else if (paziente.booked==true){
-                        if (datiinmemoria.name==info.name && datiinmemoria.mail==info.mail){
+                    else if (paziente.booked==true){    //se il paziente è già registrato
+                        if (datiinmemoria.name==info.name && datiinmemoria.mail==info.mail){ //controlla correttezza dati inseriti
                             
-                            request({
-                                url: database+'cookies/'+info.CF, //URL to hit
+                            request({   //controlla se è già stato assegnato un cookie
+                                url: database+'cookies/'+info.CF,
                                 method: 'GET'
                             }, function(error3, response3, body3){
                                 
                                 var info3 = JSON.parse(body3);
                                 randcookie=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
 
-                                if (response3.statusCode==404) {
+                                if (response3.statusCode==404) {    //se non è stato assegnato
                                     info3 = {
                                         "cookie":randcookie
                                     }
-                                    request({
+                                    request({   //crea un cookie e lo salva nel database cookies
                                         url: database+'cookies/'+info.CF,
                                         method: 'PUT',
                                         body: JSON.stringify(info3)
@@ -112,14 +112,14 @@ app.post('/form_iniziale', function(req, res){
                                         if(error4) {
                                             console.log(error4);
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 3600000})
-                                            res.redirect(host+'/visualizzaprenotazione?CF='+info.CF)
+                                            res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
+                                            res.redirect(host+'/visualizzaprenotazione?CF='+info.CF) //reindirizza a visualizzaprenotazione
                                         }
                                     });
                                 }
-                                else if (response3.statusCode==200){
+                                else if (response3.statusCode==200){ //se è già stato assegnato
                                     info3.cookie=randcookie
-                                    request({
+                                    request({ //aggiorna il cookie nel database
                                         url: database+'cookies/'+info.CF,
                                         method: 'PUT',
                                         body: JSON.stringify(info3)
@@ -127,8 +127,8 @@ app.post('/form_iniziale', function(req, res){
                                         if(error4) {
                                             console.log(error4);
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 3600000})
-                                            res.redirect(host+'/visualizzaprenotazione?CF='+info.CF)
+                                            res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
+                                            res.redirect(host+'/visualizzaprenotazione?CF='+info.CF) //reindirizza a visualizzaprenotazione
                                         }
                                     });
                                 }
@@ -138,26 +138,26 @@ app.post('/form_iniziale', function(req, res){
                                 
                             });
                         }
-                        else {
+                        else { //se è già verificato e ha inserito dati errati
                             res.send("ricontrolla i dati inseriti")
                         }
                     }
-                    else {
-                        if (datiinmemoria.name==info.name && datiinmemoria.mail==info.mail){
+                    else { //se è verificato ma non ha ancora prenotato
+                        if (datiinmemoria.name==info.name && datiinmemoria.mail==info.mail){ //controlla correttezza dati inseriti
                             
-                            request({
-                                url: database+'cookies/'+info.CF, //URL to hit
+                            request({ //controlla se è già presente un cookie per il CF
+                                url: database+'cookies/'+info.CF,
                                 method: 'GET'
                             }, function(error3, response3, body3){
                                 
                                 var info3 = JSON.parse(body3);
                                 randcookie=Math.random().toString(36).substr(2,15)+Math.random().toString(36).substr(2,15);
 
-                                if (response3.statusCode==404) {
+                                if (response3.statusCode==404) { //se non c'è lo crea
                                     info3 = {
                                         "cookie":randcookie
                                     }
-                                    request({
+                                    request({ //e lo salva nel DB
                                         url: database+'cookies/'+info.CF,
                                         method: 'PUT',
                                         body: JSON.stringify(info3)
@@ -165,14 +165,14 @@ app.post('/form_iniziale', function(req, res){
                                         if(error4) {
                                             console.log(error4);
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 3600000})
-                                            res.redirect(host+'/paginadiprenotazione?CF='+info.CF)
+                                            res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
+                                            res.redirect(host+'/paginadiprenotazione?CF='+info.CF) //reindirizza a paginadiprenotazione
                                         }
                                     });
                                 }
-                                else if (response3.statusCode==200){
+                                else if (response3.statusCode==200){ //se c'è già un cookie
                                     info3.cookie=randcookie
-                                    request({
+                                    request({ //lo aggiorna
                                         url: database+'cookies/'+info.CF,
                                         method: 'PUT',
                                         body: JSON.stringify(info3)
@@ -180,8 +180,8 @@ app.post('/form_iniziale', function(req, res){
                                         if(error4) {
                                             console.log(error4);
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 3600000})
-                                            res.redirect(host+'/paginadiprenotazione?CF='+info.CF)
+                                            res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
+                                            res.redirect(host+'/paginadiprenotazione?CF='+info.CF) //reindirizza a pagina di prenotazione
                                         }
                                     });
                                 }
@@ -190,7 +190,7 @@ app.post('/form_iniziale', function(req, res){
                                 }                        
                             });
                         }
-                        else {
+                        else { //se è già verificato e ha inserito i dati errati
                             res.send("ricontrolla i dati inseriti")
                         }
                     }
@@ -209,7 +209,7 @@ app.post('/form_iniziale', function(req, res){
 });
 
 
-app.get('/sendverify', function(req, res){
+app.get('/sendverify', function(req, res){ //chiama la send e manda il messaggio "controlla la mail"
     request({
         url:host+'/send?CF='+req.query.CF
     }, function(error, response, body){
@@ -218,19 +218,16 @@ app.get('/sendverify', function(req, res){
 })
 
 
-app.get('/noCF', function(req, res){
+app.get('/noCF', function(req, res){ //pagina se provo a registrare un codice fiscale non di un assistito
     res.send('Impossibile prenotare, codice fiscale non presente')
 })
 
 
 
-
-var rand, mailOptions, link;
-
-app.get('/send',function(req,res){
+app.get('/send',function(req,res){ //manda la mail di verifica con nodemailer
 
     request({
-        url: database+'patients/'+req.query.CF, //URL to hit
+        url: database+'patients/'+req.query.CF,
         method: 'GET'
     }, function(error, response, body){
         if (error) {
@@ -238,8 +235,8 @@ app.get('/send',function(req,res){
         }
         else {
             paziente=JSON.parse(body)
-            link=host+"/verify?id="+paziente.codverifica+"&CF="+paziente._id;
-            mailOptions={
+            var link=host+"/verify?id="+paziente.codverifica+"&CF="+paziente._id;
+            var mailOptions={
                 from: '"Verifica la mail" <rdcprogetto@gmail.com>',
                 to : paziente.mail,
                 subject : "Per favore conferma il tuo account mail",
@@ -247,7 +244,7 @@ app.get('/send',function(req,res){
                     "Altrimenti ripeta la procedura di prenotazione.<br><br>"+
                     "Nome: "+paziente.name + "<br>Codice Fiscale: "+paziente._id+"<br><br>"+
                     "<a href="+link+">Click here to verify</a>"
-            }
+            } //si richiede di verificare la mail solo se i dati sono corretti
             
             smtpTransport.sendMail(mailOptions, function(error, response){
                 if(error){
@@ -265,9 +262,9 @@ app.get('/send',function(req,res){
 });
 
 
-app.get('/verify',function(req,res){
-    request({
-        url: database+'patients/'+req.query.CF, //URL to hit
+app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di verifica
+    request({ //chiama il database dei pazienti registrati
+        url: database+'patients/'+req.query.CF,
         method: 'GET'
     }, function(error, response, body){
         if (error) {
@@ -275,10 +272,10 @@ app.get('/verify',function(req,res){
         }
         else {
             paziente=JSON.parse(body)  
-            if(req.query.id==paziente.codverifica){
+            if(req.query.id==paziente.codverifica){ //se il codice nel link di verifica coincide con quello nel database
 
                 request({
-                    url: database+'patients/'+paziente._id, //URL to hit
+                    url: database+'patients/'+paziente._id,
                     method: 'GET'
                 }, function(error2, response2, body2){
                     if(error2) {
@@ -296,7 +293,7 @@ app.get('/verify',function(req,res){
                                 console.log(error3);
                             } else {
                                 request({
-                                    url: database+'cookies/'+paziente._id, //URL to hit
+                                    url: database+'cookies/'+paziente._id,
                                     method: 'GET'
                                 }, function(error4, response4, body4){
                                     
