@@ -24,7 +24,8 @@ function log(severity, msg) {
 
         setTimeout(function () {
             connection.close();
-            process.exit(0)
         }, 500);
     });
 }
+
+module.exports.log=log

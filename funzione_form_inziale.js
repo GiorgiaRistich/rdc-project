@@ -31,7 +31,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
             res.redirect(host+'/noCF')
         }
         else if (response.statusCode == 200) {  //se è un assistito controlla se è già registrato
-            logger.log("info","si controlla che l'assistito si sia registrato")
+            logger.log("info", "si controlla che l'assistito si sia registrato")
             request({   //chiama il database dei registrati
                 url: database+'patients/'+info.CF, 
                 method: 'GET'
@@ -54,7 +54,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                         body: JSON.stringify(paz)
                     }, function(error3, response3, body3){
                         if (error3) {
-                            logger.log("error", JSON.parse(response3))
+                            logger.log("error", JSON.stringify(response3))
                             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                         }
                         else {
@@ -73,7 +73,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                             method: 'GET'
                         }, function(error3, response3, body3){
                             if(error3) {
-                                logger.log("error", JSON.parse(response3));
+                                logger.log("error", JSON.stringify(response3));
                                 res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                             } else {
                                 var info3 = JSON.parse(body3);  //aggiorna i dati in database con i nuovi inseriti
@@ -86,7 +86,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                     body: JSON.stringify(info3)
                                 }, function(error4, response4, body4){
                                     if(error4) {
-                                        logger.log("error", JSON.parse(response4))
+                                        logger.log("error", JSON.stringify(response4))
                                         res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                     } else {    //reindirizza a sendverify
                                         res.redirect(host+'/sendverify?CF='+info.CF)
@@ -96,7 +96,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                         });
 
                     }
-                    else if (paziente.booked==true){    //se il paziente è già registrato
+                    else if (paziente.booked==true){    //se il paziente ha già prenotato
                         logger.log("info","controllo correttezza dati")
                         if (datiinmemoria.name==info.name && datiinmemoria.mail==info.mail){ //controlla correttezza dati inseriti
                              request({   //controlla se è già stato assegnato un cookie
@@ -117,7 +117,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                         body: JSON.stringify(info3)
                                     }, function(error4, response4, body4){
                                         if(error4) {
-                                            logger.log("error", JSON.parse(response4))
+                                            logger.log("error", JSON.stringify(response4))
                                             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
                                             res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
@@ -133,7 +133,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                         body: JSON.stringify(info3)
                                     }, function(error4, response4, body4){
                                         if(error4) {
-                                            logger.log("error", JSON.parse(response4))
+                                            logger.log("error", JSON.stringify(response4))
                                             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
                                             res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
@@ -142,7 +142,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                     });
                                 }
                                 else {
-                                    logger.log("error", JSON.parse(response3))
+                                    logger.log("error", JSON.stringify(response3))
                                     res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                 }
                                 
@@ -174,7 +174,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                         body: JSON.stringify(info3)
                                     }, function(error4, response4, body4){
                                         if(error4) {
-                                            logger.log("error", JSON.parse(response4))
+                                            logger.log("error", JSON.stringify(response4))
                                             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
                                             res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
@@ -190,7 +190,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                         body: JSON.stringify(info3)
                                     }, function(error4, response4, body4){
                                         if(error4) {
-                                            logger.log("error", JSON.parse(response4))
+                                            logger.log("error", JSON.stringify(response4))
                                             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
                                             res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
@@ -199,7 +199,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                     });
                                 }
                                 else {
-                                    logger.log("error", JSON.parse(response3))
+                                    logger.log("error", JSON.stringify(response3))
                                     res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
 
                                 }                        
@@ -212,13 +212,13 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                     }
                 }
                 else {
-                    logger.log("error", JSON.parse(response3))
+                    logger.log("error", JSON.stringify(response2))
                     res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                 }
             })
         }
         else {
-            logger.log("error", "errore GET in cf_medico")
+            logger.log("error", JSON.stringify(response))
             res.send("Errore sconosciuto") //fare pagina html specifica e quindi usa res.redirect
         }
     })
@@ -230,8 +230,13 @@ app.get('/sendverify', function(req, res){ //chiama la send e manda il messaggio
     request({
         url:host+'/send?CF='+req.query.CF
     }, function(error, response, body){
-        logger.log("info","si deve ricontrollare la mail")
-        res.send("controlla la mail")
+        if (error) {
+            logger.log("error", JSON.stringify(response))
+        }
+        else {
+            logger.log("info", "si deve controllare la mail")
+            res.send("controlla la mail")
+        }
     })
 })
 
@@ -250,7 +255,7 @@ app.get('/send',function(req,res){ //manda la mail di verifica con nodemailer
         method: 'GET'
     }, function(error, response, body){
         if (error) {
-            logger.log("error", JSON.parse(response))
+            logger.log("error", JSON.stringify(response))
             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
         }
         else {
@@ -268,10 +273,11 @@ app.get('/send',function(req,res){ //manda la mail di verifica con nodemailer
             
             smtpTransport.sendMail(mailOptions, function(error, response){
                 if(error){
-                    logger.log("error","errore nella funzione sendMail")
+                    logger.log("error", JSON.stringify(response))
                     res.end("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                 }
                 else{
+                    logger.log("info", "mail inviata")
                     res.end("Apri la mail e premi sul link di verifica");
                 }
             });
@@ -288,7 +294,7 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
         method: 'GET'
     }, function(error, response, body){
         if (error) {
-            logger.log("error",JSON.parse(response))
+            logger.log("error",JSON.stringify(response))
             res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
             
         }
@@ -305,9 +311,10 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                     body: JSON.stringify(info)
                 }, function(error2, response2, body2){
                     if(error2) {
-                        logger.log("error",JSON.parse(response2))
+                        logger.log("error",JSON.stringify(response2))
                         res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                     } else {
+                        logger.log("info", "mail verificata")
                         request({ //controllo se ha già un cookie
                             url: database+'cookies/'+paziente._id,
                             method: 'GET'
@@ -326,9 +333,10 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                                     body: JSON.stringify(info2)
                                 }, function(error4, response4, body4){
                                     if(error4) {
-                                        logger.log("error",JSON.parse(response4))
+                                        logger.log("error",JSON.stringify(response4))
                                         res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                                     } else {
+                                        logger.log("info", "cookie inviato")
                                         res.cookie('cookie', randcookie, {maxAge: 3600000}) //mando il cookie
                                         res.redirect(host+'/paginadiprenotazione?CF='+paziente._id) //reindirizzo a paginadiprenotazione
                                     }
@@ -342,16 +350,17 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                                     body: JSON.stringify(info2)
                                 }, function(error4, response4, body4){
                                     if(error4) {
-                                        logger.log("error",JSON.parse(response4))
+                                        logger.log("error",JSON.stringify(response4))
                                         res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                                     } else {
+                                        logger.log("info", "cookie inviato")
                                         res.cookie('cookie', randcookie, {maxAge: 3600000}) //invio il nuovo cookie
                                         res.redirect(host+'/paginadiprenotazione?CF='+paziente._id) //reindirizzo a paginadiprenotazione
                                     }
                                 });
                             }
                             else {
-                                logger.log("error",JSON.parse(response3))
+                                logger.log("error", JSON.stringify(response3))
                                 res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                             }                        
                         });
@@ -362,6 +371,7 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
 
             }
             else{ //se il codice di verifica del link non coincide con quello nel mio database
+                logger.log("info", "codice di verifica errato")
                 res.end("<h1>Bad Request</h1>");
             }
         }
