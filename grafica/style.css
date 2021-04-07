@@ -1,0 +1,74 @@
+body,html{
+    height: 100%;
+    width: 100%;
+    background-color:aquamarine;
+}
+
+.m{
+    height: 100%;
+    background-color: azure;
+}
+
+.box{
+    width: 130%;
+    padding: 10%;
+    margin-top: 15%;
+    background-color: #fff;
+    position: absolute;
+    right: -65%;
+}
+
+.input-group{
+    width: 40%;
+}
+
+.input-group-addon{
+    border-radius: 0;
+    border-color: black;
+}
+
+.f{
+    font-size: 80px;
+    color: #FFB310;
+}
+
+.form-control{
+    height: 40px;
+    line-height: 2;
+    border-radius: 0;
+    font-size: 15px;
+    box-shadow: pink;
+}
+
+.btn-info{
+    border-radius: 0;
+    background-color: #3498DB;
+    margin-top: 20px;
+    padding: 14px 28px;
+}
+
+h2{
+    font-weight: bold;
+}
+
+@media only screen and (max-width:1200px) { /*servono a regolare l'interfaccia quando si passa da un computer a un dispositivo mobile*/
+    .input-group{
+        width: 50%;
+    }   
+    
+}
+@media only screen and (max-width:770px){ /*The @media rule is used in media queries to apply different styles for different media types/devices*/
+    .p{
+        padding: 10%;
+    }
+    .box{
+        width:90%;
+        padding: 5%;
+        position: relative;
+        right: 0;
+        margin: 0 auto; /*l'oggetto si trova centralmente nel suo container*/
+
+    }
+
+
+}
