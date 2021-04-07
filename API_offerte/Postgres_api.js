@@ -3,20 +3,21 @@ var app = express();
 const { Pool, Client } = require("pg");
 
 dbpassword="adminpass"
-
+db="test"
+querystring="SELECT * FROM prova"
 
 app.get('/database', function(req, res) {
 
     const pool = new Pool({
         user: "postgres",
         host: "2.236.50.195",
-        database: "test",
+        database: db,
         password: dbpassword,
         port: "5432"
     });
 
     pool.query(
-        "SELECT * FROM prova",
+        querystring,
         function (error, response) {
             var risp={
                 elenco:response.rows
