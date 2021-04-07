@@ -24,4 +24,6 @@ database relazionale sul lato server
 
 PS: ho iniziato a leggere l'esercitazione di PHP dell'anno scorso e ho provato ad eseguire il codice di login e di registrazione(ho già messo i file); Mi danno qualche problema... Dobbiamo rivederli insieme
 
+NOTA: Per documentare Api bisogna usare https://apidocjs.com/
+
 README
