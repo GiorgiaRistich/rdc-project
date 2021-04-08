@@ -3,10 +3,9 @@ var app = express();
 const { Pool, Client } = require("pg");
 
 dbpassword="adminpass"
-db="test"
-querystring="SELECT * FROM prova"
+db="progettordc"
 
-app.get('/database', function(req, res) {
+app.get('/prenotazioni', function(req, res) {
 
     const pool = new Pool({
         user: "postgres",
@@ -16,16 +15,32 @@ app.get('/database', function(req, res) {
         port: "5432"
     });
 
-    pool.query(
-        querystring,
-        function (error, response) {
+    //console.log(Object.keys(req.query).length==0)
+
+    if (JSON.stringify(req.query)=='{}') {
+        querystring="SELECT * FROM prenotazioni"
+        pool.query(querystring, function (error, response) {
             var risp={
-                elenco:response.rows
+                totaleprenotazioni: response.rows.length,
+                elenco: response.rows
             }
             res.send(risp);
             pool.end();
         }
-    );
+        );
+    }
+    else {
+        CF=req.query.CF
+        querystring="SELECT * FROM prenotazioni where cf='"+CF+"'"
+        pool.query(querystring, function (error, response) {
+            var risp={
+                prenotazione: response.rows
+            }
+            res.send(risp);
+            pool.end();
+        }
+        );
+    }
 
 })
 
