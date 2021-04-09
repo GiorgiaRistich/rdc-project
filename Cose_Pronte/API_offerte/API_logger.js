@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 const fs = require('fs')
 
-path='../Cose_Pronte/file_log/'
+path='Cose_Pronte/file_log/'
 
 app.get('/logfile', function (req, res) {
     
