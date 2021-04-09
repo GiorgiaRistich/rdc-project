@@ -50,6 +50,16 @@ body,html{
 h2{
     font-weight: bold;
 }
+.immagine{
+    max-width: 600px;
+    max-height: 300px;
+    position: absolute;
+    top: 15px;
+    right: 100px;
+   display: block;
+    margin: 0px auto ;
+}
+
 
 @media only screen and (max-width:1200px) { /*servono a regolare l'interfaccia quando si passa da un computer a un dispositivo mobile*/
     .input-group{
