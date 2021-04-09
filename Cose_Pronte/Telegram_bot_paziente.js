@@ -40,12 +40,12 @@ function repeat(){
                             
                                 pool.query(
                                     "SELECT * FROM prenotazioni WHERE cf='"+CF+"'",
-                                    function (error, response) {
-                                        if (response.rowCount==0) {
+                                    function (error2, response2) {
+                                        if (response2.rowCount==0) {
                                             textpren='Prenotazione non trovata'
                                         }
                                         else {
-                                            infopren=response.rows[0]
+                                            infopren=response2.rows[0]
                                             cfpren=infopren.cf
                                             nomepren=infopren.nome
                                             emailpren=infopren.email
@@ -56,8 +56,8 @@ function repeat(){
                                         request({
                                             url: 'https://api.telegram.org/bot'+token+'/sendMessage?chat_id='+idchat+"&text="+textpren
                                         },
-                                            function (error, response, body) {
-                                                if (error) console.log(error)
+                                            function (error3, response3, body3) {
+                                                if (error3) console.log(error3)
                                             }
                                         )
                                         pool.end();
