@@ -8,6 +8,8 @@
   <link rel="stylesheet" type="text/css" href="styleMedicoLogin.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="function.js"></script>
+
 </head>
 <body>
 
@@ -18,11 +20,13 @@
   <h3 class= "h3 mb-3 text-center">LOGIN</h3>
   <input type="email" name="inputEmail" class="form-control" 
    placeholder="Email address"  reqired autofocus/>
-   <input type="password" name="inputPassword" class="form-control"
+   <input type="password" name="inputPassword" id="pass" class="form-control"
    placeholder="Password" required/>
-   <div id="divRemember" class="checkbox mb-3">
+   <input type="checkbox" onclick="myFunction()" value="mostra/nascondi password">
+   <label for="inputPassword">mostra password</label>
+   <div id="divRemember" >
      <input type="checkbox" name="remember"/>
-     <label for=" remember">ricorda password</label>
+     <label for="remember">ricorda password</label>
      </div>
      <button class="btn btn-lg btn-info" name="loginBotton"
      type="submit"> accedi</button>
