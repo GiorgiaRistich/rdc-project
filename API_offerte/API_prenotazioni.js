@@ -5,7 +5,7 @@ const { Pool, Client } = require("pg");
 dbpassword="adminpass"
 db="progettordc"
 
-app.get('/getprenotazioni', function(req, res) {
+app.get('/prenotazioni', function(req, res) {
 
     const pool = new Pool({
         user: "postgres",
