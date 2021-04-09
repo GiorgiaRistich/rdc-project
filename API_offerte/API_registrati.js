@@ -8,7 +8,6 @@ let database = 'http://admin:adminpass@2.236.50.195:5984/'
 
 app.get('/registrati', function (req, res) {
 
-    //console.log(Object.keys(req.query).length==0)
 
     if (Object.keys(req.query).length == 0) {
         request({
