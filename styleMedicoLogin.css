@@ -9,7 +9,7 @@ body {
     align-items: center;
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color:#8ae3f3;
+    background-color:azure;
   }
 
   .form-signin {
@@ -21,6 +21,9 @@ body {
   
   .form-signin .checkbox {
     font-weight: 400;
+    text-align: center;
+   
+
   }
   
   .form-signin .form-floating:focus-within {
@@ -53,5 +56,10 @@ body {
     font-size: xx-large;
 }
   
-
+.img-circle {
+     max-width: 210px;
+     text-align: center;
+     display: block;
+     margin:0px auto;
+}
 
