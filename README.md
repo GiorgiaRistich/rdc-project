@@ -1,6 +1,6 @@
 # rdc-project
 
--REQUISITI RTC 
+-REQUISITI RDC 
 1.Il servizio REST che implementate (lo chiameremo SERV) deve offrire a terze parti delle API documentate
 2.SERV si deve interfacciare con almeno due servizi REST di terze parti (e.g. google maps)
 3.Almeno uno dei servizi REST esterni deve essere “commerciale” (es: twitter, google, facebook, pubnub, parse, firbase etc)
