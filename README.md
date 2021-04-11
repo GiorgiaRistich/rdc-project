@@ -1,5 +1,8 @@
 # rdc-project
 
+!!!Aggiungi API log
+!!!Aggiungi token per le API
+
 -REQUISITI RDC 
 1.Il servizio REST che implementate (lo chiameremo SERV) deve offrire a terze parti delle API documentate
 2.SERV si deve interfacciare con almeno due servizi REST di terze parti (e.g. google maps)
