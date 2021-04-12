@@ -3,8 +3,16 @@
     "type": "post",
     "url": "/insertdisp",
     "title": "",
+    "version": "1.0.0",
     "name": "InserisciDisponibilità",
     "group": "Inserisci_Disponibilità",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "http://localhost:3000/insertdisp\n\nbody: {\n    token: 'ExampleToken',\n    giorno: '04-13-2021',\n    orario: '08:00',\n    totdisponibilita: 5\n}",
+        "type": "js"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -117,7 +125,6 @@
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "API_offerte/apidocSource.js",
     "groupTitle": "Inserisci_Disponibilità"
   },
@@ -125,8 +132,16 @@
     "type": "get",
     "url": "/logfile",
     "title": "",
+    "version": "1.0.0",
     "name": "GetLog",
     "group": "Log",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "http://localhost:3000/logfile?level=info\nhttp://localhost:3000/logfile?level=error",
+        "type": "js"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -199,7 +214,6 @@
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "API_offerte/apidocSource.js",
     "groupTitle": "Log"
   },
@@ -207,8 +221,16 @@
     "type": "get",
     "url": "/prenotazioni",
     "title": "",
+    "version": "1.0.0",
     "name": "GetPrenotazioni",
     "group": "Prenotazioni",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "http://localhost:3000/prenotazioni?token=TokenExample\nhttp://localhost:3000/prenotazioni?token=TokenExample&cf=ABCDEF01G23H456",
+        "type": "js"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -336,7 +358,6 @@
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "API_offerte/apidocSource.js",
     "groupTitle": "Prenotazioni"
   },
@@ -344,8 +365,16 @@
     "type": "get",
     "url": "/registrati",
     "title": "",
+    "version": "1.0.0",
     "name": "GetRegistrati",
     "group": "Registrati",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "http://localhost:3000/registrati?token=TokenExample\nhttp://localhost:3000/registrati?token=TokenExample&cf=ABCDEF01G23H456",
+        "type": "js"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -473,7 +502,6 @@
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "API_offerte/apidocSource.js",
     "groupTitle": "Registrati"
   }

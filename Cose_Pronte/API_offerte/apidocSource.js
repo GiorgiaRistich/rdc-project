@@ -5,8 +5,12 @@
 /** 
  * 
  * @api {get} /logfile
+ * @apiVersion 1.0.0
  * @apiName GetLog
  * @apiGroup Log
+ * @apiExample {js} Example usage:
+ *      http://localhost:3000/logfile?level=info
+ *      http://localhost:3000/logfile?level=error
  *
  * @apiParam {String} level Livello del file di log richiesto: 'info' o 'error'
  *
@@ -50,8 +54,13 @@
 
 /**
  * @api {get} /registrati
+ * @apiVersion 1.0.0
  * @apiName GetRegistrati
  * @apiGroup Registrati
+ * @apiExample {js} Example usage:
+ *      http://localhost:3000/registrati?token=TokenExample
+ *      http://localhost:3000/registrati?token=TokenExample&cf=ABCDEF01G23H456
+ * 
  *
  * @apiParam {String} token Token di autenticazione
  * @apiParam {String} [cf] Codice fiscale
@@ -133,8 +142,19 @@
 /** 
  * 
  * @api {post} /insertdisp
+ * @apiVersion 1.0.0
  * @apiName InserisciDisponibilità
  * @apiGroup Inserisci Disponibilità
+ * @apiExample {js} Example usage:
+ *      http://localhost:3000/insertdisp
+ *
+ *      body: {
+ *          token: 'ExampleToken',
+ *          giorno: '04-13-2021',
+ *          orario: '08:00',
+ *          totdisponibilita: 5
+ *      }
+ * 
  *
  * @apiParam {String} token Token di autenticazione
  * @apiParam {Date} giorno Data nuova disponibilità in formato americano (e.g. 04-13-2021)
@@ -195,8 +215,13 @@
 /** 
  * 
  * @api {get} /prenotazioni
+ * @apiVersion 1.0.0
  * @apiName GetPrenotazioni
  * @apiGroup Prenotazioni
+ * @apiExample {js} Example usage:
+ *      http://localhost:3000/prenotazioni?token=TokenExample
+ *      http://localhost:3000/prenotazioni?token=TokenExample&cf=ABCDEF01G23H456
+ * 
  *
  * @apiParam {String} token Token di autenticazione
  * @apiParam {String} [cf] Codice fiscale
