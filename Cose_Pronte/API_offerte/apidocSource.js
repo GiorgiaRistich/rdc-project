@@ -1,5 +1,53 @@
 //launch with 'npx apidoc -i API_offerte -o outApidoc'
 
+
+
+/** 
+ * 
+ * @api {get} /logfile
+ * @apiName GetLog
+ * @apiGroup Log
+ *
+ * @apiParam {String} level Livello del file di log richiesto: 'info' o 'error'
+ *
+ * 
+ * @apiSuccess (Success 200) {String} level Livello di log richiesto
+ * @apiSuccess (Success 200) {String[]} log Array di messaggi salvati nel file di log di livello 'level'
+ *
+ * @apiSuccessExample Success-Response:
+ *      HTTP/1.1 200 OK
+        {
+            "level": "info",
+            "log": [
+                "si controlla che l'assistito si sia registrato",
+                "si deve controllare la mail",
+                "mail verificata",
+                "cookie inviato"
+            ]
+        }
+ * 
+ * 
+ * @apiError (Error 400) BadRequest Errore di sintassi
+ * 
+ * @apiErrorExample Error-Response 400:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "errore": "passati parametri errati"
+ *     }
+ * 
+ *
+ * 
+ * @apiError (Error 500) InternalServerError Errore lettura file
+ *
+ * @apiErrorExample Error-Response 500:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "errore": "errore lettura file"
+ *     }
+ */
+
+
+
 /**
  * @api {get} /registrati
  * @apiName GetRegistrati
@@ -76,6 +124,70 @@
  *       "errore": "errore richiesta database"
  *     }
  */
+
+
+
+
+
+/** 
+ * 
+ * @api {post} /insertdisp
+ * @apiName InserisciDisponibilità
+ * @apiGroup Inserisci Disponibilità
+ *
+ * @apiParam {String} token Token di autenticazione
+ * @apiParam {Date} giorno Data nuova disponibilità in formato americano (e.g. 04-13-2021)
+ * @apiParam {Time} orario Orario nuova disponibilità
+ * @apiParam {Number} totdisponibilita Totale disponibilità per la data ed ora inserite
+ *
+ * 
+ * @apiSuccess (Success 200) {String} conferma Messaggio di conferma
+ *
+ * @apiSuccessExample Success-Response:
+ *      HTTP/1.1 200 OK
+        {
+           "conferma": "disponibilità inserita"
+        }
+ * 
+ * 
+ * @apiError (Error 400) BadRequest Errore di sintassi
+ * 
+ * @apiErrorExample Error-Response 400:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "errore": "passati parametri errati"
+ *     }
+ * 
+ *
+ * @apiError (Error 401) Unauthorized Token errato
+ *
+ * @apiErrorExample Error-Response 401:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "errore": "token errato o mancante"
+ *     }
+ * 
+ * 
+ * @apiError (Error 409) Conflict Disponibilità già presente in database
+ *
+ * @apiErrorExample Error-Response 409:
+ *     HTTP/1.1 409 Conflict
+ *     {
+ *       "errore": "data e orario già presenti nel database"
+ *     }
+ * 
+ * 
+ * @apiError (Error 500) InternalServerError Errore richiesta al database
+ *
+ * @apiErrorExample Error-Response 500:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "errore": "errore richiesta database"
+ *     }
+ */
+
+
+
 
 
 
@@ -156,62 +268,3 @@
  *     }
  */
 
-
-
-
-/** 
- * 
- * @api {post} /insertdisp
- * @apiName InserisciDisponibilità
- * @apiGroup Inserisci Disponibilità
- *
- * @apiParam {String} token Token di autenticazione
- * @apiParam {Date} giorno Data nuova disponibilità in formato americano (e.g. 04-13-2021)
- * @apiParam {Time} orario Orario nuova disponibilità
- * @apiParam {Number} totdisponibilita Totale disponibilità per la data ed ora inserite
- *
- * 
- * @apiSuccess (Success 200) {String} conferma Messaggio di conferma
- *
- * @apiSuccessExample Success-Response:
- *      HTTP/1.1 200 OK
-        {
-           "conferma": "disponibilità inserita"
-        }
- * 
- * 
- * @apiError (Error 400) BadRequest Errore di sintassi
- * 
- * @apiErrorExample Error-Response 400:
- *     HTTP/1.1 400 Bad Request
- *     {
- *       "errore": "passati parametri errati"
- *     }
- * 
- *
- * @apiError (Error 401) Unauthorized Token errato
- *
- * @apiErrorExample Error-Response 401:
- *     HTTP/1.1 401 Unauthorized
- *     {
- *       "errore": "token errato o mancante"
- *     }
- * 
- * 
- * @apiError (Error 409) Conflict Disponibilità già presente in database
- *
- * @apiErrorExample Error-Response 409:
- *     HTTP/1.1 409 Conflict
- *     {
- *       "errore": "data e orario già presenti nel database"
- *     }
- * 
- * 
- * @apiError (Error 500) InternalServerError Errore richiesta al database
- *
- * @apiErrorExample Error-Response 500:
- *     HTTP/1.1 500 Internal Server Error
- *     {
- *       "errore": "errore richiesta database"
- *     }
- */

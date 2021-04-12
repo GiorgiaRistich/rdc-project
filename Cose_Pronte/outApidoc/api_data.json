@@ -123,6 +123,88 @@
   },
   {
     "type": "get",
+    "url": "/logfile",
+    "title": "",
+    "name": "GetLog",
+    "group": "Log",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "level",
+            "description": "<p>Livello del file di log richiesto: 'info' o 'error'</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "level",
+            "description": "<p>Livello di log richiesto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String[]",
+            "optional": false,
+            "field": "log",
+            "description": "<p>Array di messaggi salvati nel file di log di livello 'level'</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n   {\n       \"level\": \"info\",\n       \"log\": [\n           \"si controlla che l'assistito si sia registrato\",\n           \"si deve controllare la mail\",\n           \"mail verificata\",\n           \"cookie inviato\"\n       ]\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 400": [
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>Errore di sintassi</p>"
+          }
+        ],
+        "Error 500": [
+          {
+            "group": "Error 500",
+            "optional": false,
+            "field": "InternalServerError",
+            "description": "<p>Errore lettura file</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response 400:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"errore\": \"passati parametri errati\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 500:",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"errore\": \"errore lettura file\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "API_offerte/apidocSource.js",
+    "groupTitle": "Log"
+  },
+  {
+    "type": "get",
     "url": "/prenotazioni",
     "title": "",
     "name": "GetPrenotazioni",

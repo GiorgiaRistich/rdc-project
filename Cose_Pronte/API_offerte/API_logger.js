@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 const fs = require('fs')
 
-path='Cose_Pronte/file_log/'
+path='file_log/'
 
 app.get('/logfile', function (req, res) {
     
@@ -11,15 +11,18 @@ app.get('/logfile', function (req, res) {
         fs.readFile(path+req.query.level+'.log', 'utf8' , (err, data) => {
             if (err) {
                 console.error(err)
-                res.send('qualcosa è andato storto')
+                res.status(500).send({errore: "errore lettura file"})
             }
             else {
-                res.send({log: data.split('\n')})
+                res.status(200).send({
+                    level: req.query.level,
+                    log: data.split('\n')
+                })
             }
         })
     }
     else {
-        res.send({errore: 'passati parametri errati'})
+        res.status(400).send({errore: 'passati parametri errati'})
     }
 
 })
