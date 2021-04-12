@@ -1,0 +1,5 @@
+Richiesta pagina non valida
+{"errno":-2,"code":"ENOENT","syscall":"open","path":"file_log/info.log"}
+Richiesta pagina non valida
+Error [ERR_TLS_CERT_ALTNAME_INVALID]: Hostname/IP does not match certificate's altnames: Host: api.gitub.com. is not in the cert's altnames: DNS:*.mytrafficmanagement.com, DNS:mytrafficmanagement.com
+Richiesta pagina non valida

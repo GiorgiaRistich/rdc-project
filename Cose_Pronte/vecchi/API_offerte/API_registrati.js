@@ -4,11 +4,11 @@ var request = require('request')
 
 let database = 'http://admin:adminpass@2.236.50.195:5984/'
 
-let token='token'
+let tokenapi='token'
 
 app.get('/registrati', function (req, res) {
 
-    if (typeof req.query.token != 'undefined' && req.query.token==token){
+    if (typeof req.query.token != 'undefined' && req.query.token==tokenapi){
 
         if (Object.keys(req.query).length == 1) {
             request({

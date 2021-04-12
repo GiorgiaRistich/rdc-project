@@ -1,9 +1,9 @@
 var amqp = require('amqplib/callback_api');
 var fs = require('fs');
 
-let host = 'amqp://2.236.50.195'
+let amqphost = 'amqp://2.236.50.195'
 
-amqp.connect(host, function (error0, connection) {
+amqp.connect(amqphost, function (error0, connection) {
     if (error0) {
         throw error0;
     }
@@ -38,7 +38,7 @@ amqp.connect(host, function (error0, connection) {
 });
 
 
-amqp.connect(host, function (error0, connection) {
+amqp.connect(amqphost, function (error0, connection) {
     if (error0) {
         throw error0;
     }

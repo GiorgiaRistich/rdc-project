@@ -18,10 +18,7 @@ function repeat(){
             if (error) console.log(error)
             else {
                 info = JSON.parse(body)
-                if (info.result.length==0) {
-                    setTimeout(repeat, 5000)
-                }
-                else {
+                if (info.result.length!=0) {
                     newupdate = info.result[info.result.length - 1].update_id
                     if (lastupdate=='0') lastupdate=newupdate
                     if (newupdate != lastupdate) {
@@ -39,7 +36,7 @@ function repeat(){
                                 });
                             
                                 pool.query(
-                                    "SELECT * FROM prenotazioni WHERE cf='"+CF+"'",
+                                    "SELECT * FROM prenotazioni WHERE cf='"+CF.toUpperCase()+"'",
                                     function (error2, response2) {
                                         if (response2.rowCount==0) {
                                             textpren='Prenotazione non trovata'

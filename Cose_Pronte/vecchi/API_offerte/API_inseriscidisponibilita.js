@@ -7,12 +7,12 @@ app.use(bodyParser.json());
 
 dbpassword="adminpass"
 db="progettordc"
-token='token'
-//giorno va in formato americano e.g. 03-14-2021 -> 14 marzo 2021
+tokenapi='token'
+
 
 app.post('/insertdisp', function(req, res) {
 
-    if (typeof req.body.token != 'undefined' && req.body.token==token){
+    if (typeof req.body.token != 'undefined' && req.body.token==tokenapi){
             
         const pool = new Pool({
             user: "postgres",
@@ -29,7 +29,7 @@ app.post('/insertdisp', function(req, res) {
         
         else {
 
-            giorno=req.body.giorno
+            giorno=req.body.giorno //giorno va in formato americano e.g. 03-14-2021 -> 14 marzo 2021
             orario=req.body.orario
             totdisponibilita=req.body.totdisponibilita
 

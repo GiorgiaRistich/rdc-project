@@ -4,11 +4,11 @@ const { Pool, Client } = require("pg");
 
 dbpassword="adminpass"
 db="progettordc"
-token='token'
+tokenapi='token'
 
 app.get('/prenotazioni', function(req, res) {
 
-    if (typeof req.query.token != 'undefined' && req.query.token==token){
+    if (typeof req.query.token != 'undefined' && req.query.token==tokenapi){
 
         const pool = new Pool({
             user: "postgres",
