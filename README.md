@@ -1,6 +1,5 @@
 # rdc-project
 
-!!!Aggiungi API log
 !!!Aggiungi token per le API
 !!!Crea APIDOC
 

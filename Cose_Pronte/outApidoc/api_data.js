@@ -1,0 +1,398 @@
+define({ "api": [
+  {
+    "type": "post",
+    "url": "/insertdisp",
+    "title": "",
+    "name": "InserisciDisponibilità",
+    "group": "Inserisci_Disponibilità",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token di autenticazione</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "giorno",
+            "description": "<p>Data nuova disponibilità in formato americano (e.g. 04-13-2021)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Time",
+            "optional": false,
+            "field": "orario",
+            "description": "<p>Orario nuova disponibilità</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "totdisponibilita",
+            "description": "<p>Totale disponibilità per la data ed ora inserite</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "conferma",
+            "description": "<p>Messaggio di conferma</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n   {\n      \"conferma\": \"disponibilità inserita\"\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 400": [
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>Errore di sintassi</p>"
+          }
+        ],
+        "Error 401": [
+          {
+            "group": "Error 401",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Token errato</p>"
+          }
+        ],
+        "Error 409": [
+          {
+            "group": "Error 409",
+            "optional": false,
+            "field": "Conflict",
+            "description": "<p>Disponibilità già presente in database</p>"
+          }
+        ],
+        "Error 500": [
+          {
+            "group": "Error 500",
+            "optional": false,
+            "field": "InternalServerError",
+            "description": "<p>Errore richiesta al database</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response 400:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"errore\": \"passati parametri errati\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 401:",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"errore\": \"token errato o mancante\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 409:",
+          "content": "HTTP/1.1 409 Conflict\n{\n  \"errore\": \"data e orario già presenti nel database\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 500:",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"errore\": \"errore richiesta database\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "API_offerte/apidocSource.js",
+    "groupTitle": "Inserisci_Disponibilità"
+  },
+  {
+    "type": "get",
+    "url": "/prenotazioni",
+    "title": "",
+    "name": "GetPrenotazioni",
+    "group": "Prenotazioni",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token di autenticazione</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "cf",
+            "description": "<p>Codice fiscale</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200 without cf": [
+          {
+            "group": "Success 200 without cf",
+            "type": "Number",
+            "optional": false,
+            "field": "totaleprenotazioni",
+            "description": "<p>Numero assistiti prenotati</p>"
+          },
+          {
+            "group": "Success 200 without cf",
+            "type": "Object[]",
+            "optional": false,
+            "field": "elenco",
+            "description": "<p>Elenco di assistiti prenotati</p>"
+          }
+        ],
+        "Success 200 with cf": [
+          {
+            "group": "Success 200 with cf",
+            "type": "String",
+            "optional": false,
+            "field": "cf",
+            "description": "<p>Codice fiscale assistito prenotato</p>"
+          },
+          {
+            "group": "Success 200 with cf",
+            "type": "String",
+            "optional": false,
+            "field": "nome",
+            "description": "<p>Nome e cognome</p>"
+          },
+          {
+            "group": "Success 200 with cf",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email</p>"
+          },
+          {
+            "group": "Success 200 with cf",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "datap",
+            "description": "<p>Data e ora prenotazione</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response without cf:",
+          "content": "HTTP/1.1 200 OK\n{\n       \"totaleprenotazioni\": 2,\n       \"elenco\": [\n           {\n               \"cf\": \"QWERTY01U23I456O\",\n               \"nome\": \"Nome Cognome\",\n               \"email\": \"mail@dominio.com\",\n               \"datap\": \"2021-04-08T07:30:00.000Z\"\n           },\n           {\n               \"cf\": \"ABCDEF01G23H456I\",\n               \"nome\": \"Nome Cognome\",\n               \"email\": \"mail2@dominio.it\",\n               \"datap\": \"2021-04-11T15:00:00.000Z\"\n           }\n       ]\n   }",
+          "type": "json"
+        },
+        {
+          "title": "Success-Response with cf:",
+          "content": "HTTP/1.1 200 OK\n   {\n       \"cf\": \"ABCDEF01G23H456I\",\n       \"nome\": \"Nome Cognome\",\n       \"email\": \"mail@dominio.it\",\n       \"datap\": \"2021-04-11T15:00:00.000Z\"\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 400": [
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>Errore di sintassi</p>"
+          }
+        ],
+        "Error 401": [
+          {
+            "group": "Error 401",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Token errato</p>"
+          }
+        ],
+        "Error 500": [
+          {
+            "group": "Error 500",
+            "optional": false,
+            "field": "InternalServerError",
+            "description": "<p>Errore richiesta al database</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response 400:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"errore\": \"passati parametri errati\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 401:",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"errore\": \"token errato o mancante\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 500:",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"errore\": \"errore richiesta database\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "API_offerte/apidocSource.js",
+    "groupTitle": "Prenotazioni"
+  },
+  {
+    "type": "get",
+    "url": "/registrati",
+    "title": "",
+    "name": "GetRegistrati",
+    "group": "Registrati",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token di autenticazione</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "cf",
+            "description": "<p>Codice fiscale</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200 without cf": [
+          {
+            "group": "Success 200 without cf",
+            "type": "Object[]",
+            "optional": false,
+            "field": "registrati",
+            "description": "<p>Elenco di utenti registrati</p>"
+          }
+        ],
+        "Success 200 with cf": [
+          {
+            "group": "Success 200 with cf",
+            "type": "String",
+            "optional": false,
+            "field": "cf",
+            "description": "<p>Codice fiscale assistito registrato</p>"
+          },
+          {
+            "group": "Success 200 with cf",
+            "type": "String",
+            "optional": false,
+            "field": "nome",
+            "description": "<p>Nome e cognome</p>"
+          },
+          {
+            "group": "Success 200 with cf",
+            "type": "String",
+            "optional": false,
+            "field": "mail",
+            "description": "<p>Email</p>"
+          },
+          {
+            "group": "Success 200 with cf",
+            "type": "Boolean",
+            "optional": false,
+            "field": "verificato",
+            "description": "<p>True se la mail è stata verificata</p>"
+          },
+          {
+            "group": "Success 200 with cf",
+            "type": "Boolean",
+            "optional": false,
+            "field": "booked",
+            "description": "<p>True se l'assistito ha già prenotato</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response without cf:",
+          "content": "HTTP/1.1 200 OK\n{\n       \"registrati\": [\n           {\n               \"cf\": \"ABCDEF01G23H456I\",\n               \"nome\": \"Nome Cognome\",\n               \"mail\": \"mail@dominio.it\",\n               \"verificato\": false,\n               \"booked\": false\n           },\n           {\n               \"cf\": \"QWERTY01U23I456O\",\n               \"nome\": \"Nome Cognome\",\n               \"mail\": \"mail2@dominio.com\",\n               \"verificato\": true,\n               \"booked\": false\n           }\n       ]\n   }",
+          "type": "json"
+        },
+        {
+          "title": "Success-Response with cf:",
+          "content": "HTTP/1.1 200 OK\n   {\n       \"cf\": \"ABCDEF01G23H456I\",\n       \"nome\": \"Nome Cognome\",\n       \"mail\": \"mail@dominio.it\",\n       \"verificato\": false,\n       \"booked\": false\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 400": [
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>Errore di sintassi</p>"
+          }
+        ],
+        "Error 401": [
+          {
+            "group": "Error 401",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Token errato</p>"
+          }
+        ],
+        "Error 500": [
+          {
+            "group": "Error 500",
+            "optional": false,
+            "field": "InternalServerError",
+            "description": "<p>Errore richiesta al database</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response 400:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"errore\": \"passati parametri errati\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 401:",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"errore\": \"token errato o mancante\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 500:",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n  \"errore\": \"errore richiesta database\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "API_offerte/apidocSource.js",
+    "groupTitle": "Registrati"
+  }
+] });
