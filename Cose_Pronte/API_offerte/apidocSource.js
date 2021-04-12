@@ -16,15 +16,15 @@
  *
  * @apiSuccessExample Success-Response:
  *      HTTP/1.1 200 OK
-        {
-            "level": "info",
-            "log": [
-                "si controlla che l'assistito si sia registrato",
-                "si deve controllare la mail",
-                "mail verificata",
-                "cookie inviato"
-            ]
-        }
+ *      {
+ *          "level": "info",
+ *          "log": [
+ *              "si controlla che l'assistito si sia registrato",
+ *              "si deve controllare la mail",
+ *              "mail verificata",
+ *              "cookie inviato"
+ *          ]
+ *      }
  * 
  * 
  * @apiError (Error 400) BadRequest Errore di sintassi
@@ -61,23 +61,24 @@
  * @apiSuccessExample Success-Response without cf:
  *      HTTP/1.1 200 OK
  *      {
-            "registrati": [
-                {
-                    "cf": "ABCDEF01G23H456I",
-                    "nome": "Nome Cognome",
-                    "mail": "mail@dominio.it",
-                    "verificato": false,
-                    "booked": false
-                },
-                {
-                    "cf": "QWERTY01U23I456O",
-                    "nome": "Nome Cognome",
-                    "mail": "mail2@dominio.com",
-                    "verificato": true,
-                    "booked": false
-                }
-            ]
-        }
+ *          "registrati": [
+ *              {
+ *                  "cf": "ABCDEF01G23H456I",
+ *                  "nome": "Nome Cognome",
+ *                  "mail": "mail@dominio.it",
+ *                  "verificato": false,
+ *
+ *                  "booked": false
+ *              },
+ *              {
+ *                  "cf": "QWERTY01U23I456O",
+ *                  "nome": "Nome Cognome",
+ *                  "mail": "mail2@dominio.com",
+ *                  "verificato": true,
+ *                  "booked": false
+ *              }
+ *          ]
+ *      }
  * 
  *
  * @apiSuccess (Success 200 with cf) {String} cf Codice fiscale assistito registrato
@@ -89,13 +90,13 @@
  * 
  * @apiSuccessExample Success-Response with cf:
  *      HTTP/1.1 200 OK
-        {
-            "cf": "ABCDEF01G23H456I",
-            "nome": "Nome Cognome",
-            "mail": "mail@dominio.it",
-            "verificato": false,
-            "booked": false
-        }
+ *      {
+ *          "cf": "ABCDEF01G23H456I",
+ *          "nome": "Nome Cognome",
+ *          "mail": "mail@dominio.it",
+ *          "verificato": false,
+ *          "booked": false
+ *      }
  * 
  * 
  * @apiError (Error 400) BadRequest Errore di sintassi
@@ -145,9 +146,9 @@
  *
  * @apiSuccessExample Success-Response:
  *      HTTP/1.1 200 OK
-        {
-           "conferma": "disponibilità inserita"
-        }
+ *      {
+ *         "conferma": "disponibilità inserita"
+ *      }
  * 
  * 
  * @apiError (Error 400) BadRequest Errore di sintassi
@@ -207,22 +208,22 @@
  * @apiSuccessExample Success-Response without cf:
  *      HTTP/1.1 200 OK
  *      {
-            "totaleprenotazioni": 2,
-            "elenco": [
-                {
-                    "cf": "QWERTY01U23I456O",
-                    "nome": "Nome Cognome",
-                    "email": "mail@dominio.com",
-                    "datap": "2021-04-08T07:30:00.000Z"
-                },
-                {
-                    "cf": "ABCDEF01G23H456I",
-                    "nome": "Nome Cognome",
-                    "email": "mail2@dominio.it",
-                    "datap": "2021-04-11T15:00:00.000Z"
-                }
-            ]
-        }
+ *          "totaleprenotazioni": 2,
+ *          "elenco": [
+ *              {
+ *                  "cf": "QWERTY01U23I456O",
+ *                  "nome": "Nome Cognome",
+ *                  "email": "mail@dominio.com",
+ *                  "datap": "2021-04-08T07:30:00.000Z"
+ *              },
+ *              {
+ *                  "cf": "ABCDEF01G23H456I",
+ *                  "nome": "Nome Cognome",
+ *                  "email": "mail2@dominio.it",
+ *                  "datap": "2021-04-11T15:00:00.000Z"
+ *              }
+ *          ]
+ *      }
  * 
  *
  * @apiSuccess (Success 200 with cf) {String} cf Codice fiscale assistito prenotato
@@ -233,12 +234,12 @@
  * 
  * @apiSuccessExample Success-Response with cf:
  *      HTTP/1.1 200 OK
-        {
-            "cf": "ABCDEF01G23H456I",
-            "nome": "Nome Cognome",
-            "email": "mail@dominio.it",
-            "datap": "2021-04-11T15:00:00.000Z"
-        }
+ *      {
+ *          "cf": "ABCDEF01G23H456I",
+ *          "nome": "Nome Cognome",
+ *          "email": "mail@dominio.it",
+ *          "datap": "2021-04-11T15:00:00.000Z"
+ *      }
  * 
  * 
  * @apiError (Error 400) BadRequest Errore di sintassi

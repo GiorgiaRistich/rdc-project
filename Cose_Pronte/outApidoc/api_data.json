@@ -54,7 +54,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n   {\n      \"conferma\": \"disponibilità inserita\"\n   }",
+          "content": "HTTP/1.1 200 OK\n{\n   \"conferma\": \"disponibilità inserita\"\n}",
           "type": "json"
         }
       ]
@@ -162,7 +162,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n   {\n       \"level\": \"info\",\n       \"log\": [\n           \"si controlla che l'assistito si sia registrato\",\n           \"si deve controllare la mail\",\n           \"mail verificata\",\n           \"cookie inviato\"\n       ]\n   }",
+          "content": "HTTP/1.1 200 OK\n{\n    \"level\": \"info\",\n    \"log\": [\n        \"si controlla che l'assistito si sia registrato\",\n        \"si deve controllare la mail\",\n        \"mail verificata\",\n        \"cookie inviato\"\n    ]\n}",
           "type": "json"
         }
       ]
@@ -281,12 +281,12 @@
       "examples": [
         {
           "title": "Success-Response without cf:",
-          "content": "HTTP/1.1 200 OK\n{\n       \"totaleprenotazioni\": 2,\n       \"elenco\": [\n           {\n               \"cf\": \"QWERTY01U23I456O\",\n               \"nome\": \"Nome Cognome\",\n               \"email\": \"mail@dominio.com\",\n               \"datap\": \"2021-04-08T07:30:00.000Z\"\n           },\n           {\n               \"cf\": \"ABCDEF01G23H456I\",\n               \"nome\": \"Nome Cognome\",\n               \"email\": \"mail2@dominio.it\",\n               \"datap\": \"2021-04-11T15:00:00.000Z\"\n           }\n       ]\n   }",
+          "content": "HTTP/1.1 200 OK\n{\n    \"totaleprenotazioni\": 2,\n    \"elenco\": [\n        {\n            \"cf\": \"QWERTY01U23I456O\",\n            \"nome\": \"Nome Cognome\",\n            \"email\": \"mail@dominio.com\",\n            \"datap\": \"2021-04-08T07:30:00.000Z\"\n        },\n        {\n            \"cf\": \"ABCDEF01G23H456I\",\n            \"nome\": \"Nome Cognome\",\n            \"email\": \"mail2@dominio.it\",\n            \"datap\": \"2021-04-11T15:00:00.000Z\"\n        }\n    ]\n}",
           "type": "json"
         },
         {
           "title": "Success-Response with cf:",
-          "content": "HTTP/1.1 200 OK\n   {\n       \"cf\": \"ABCDEF01G23H456I\",\n       \"nome\": \"Nome Cognome\",\n       \"email\": \"mail@dominio.it\",\n       \"datap\": \"2021-04-11T15:00:00.000Z\"\n   }",
+          "content": "HTTP/1.1 200 OK\n{\n    \"cf\": \"ABCDEF01G23H456I\",\n    \"nome\": \"Nome Cognome\",\n    \"email\": \"mail@dominio.it\",\n    \"datap\": \"2021-04-11T15:00:00.000Z\"\n}",
           "type": "json"
         }
       ]
@@ -418,12 +418,12 @@
       "examples": [
         {
           "title": "Success-Response without cf:",
-          "content": "HTTP/1.1 200 OK\n{\n       \"registrati\": [\n           {\n               \"cf\": \"ABCDEF01G23H456I\",\n               \"nome\": \"Nome Cognome\",\n               \"mail\": \"mail@dominio.it\",\n               \"verificato\": false,\n               \"booked\": false\n           },\n           {\n               \"cf\": \"QWERTY01U23I456O\",\n               \"nome\": \"Nome Cognome\",\n               \"mail\": \"mail2@dominio.com\",\n               \"verificato\": true,\n               \"booked\": false\n           }\n       ]\n   }",
+          "content": "HTTP/1.1 200 OK\n{\n    \"registrati\": [\n        {\n            \"cf\": \"ABCDEF01G23H456I\",\n            \"nome\": \"Nome Cognome\",\n            \"mail\": \"mail@dominio.it\",\n            \"verificato\": false,\n\n            \"booked\": false\n        },\n        {\n            \"cf\": \"QWERTY01U23I456O\",\n            \"nome\": \"Nome Cognome\",\n            \"mail\": \"mail2@dominio.com\",\n            \"verificato\": true,\n            \"booked\": false\n        }\n    ]\n}",
           "type": "json"
         },
         {
           "title": "Success-Response with cf:",
-          "content": "HTTP/1.1 200 OK\n   {\n       \"cf\": \"ABCDEF01G23H456I\",\n       \"nome\": \"Nome Cognome\",\n       \"mail\": \"mail@dominio.it\",\n       \"verificato\": false,\n       \"booked\": false\n   }",
+          "content": "HTTP/1.1 200 OK\n{\n    \"cf\": \"ABCDEF01G23H456I\",\n    \"nome\": \"Nome Cognome\",\n    \"mail\": \"mail@dominio.it\",\n    \"verificato\": false,\n    \"booked\": false\n}",
           "type": "json"
         }
       ]
