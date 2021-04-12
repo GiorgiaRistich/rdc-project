@@ -9,7 +9,7 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "http://localhost:3000/insertdisp\n\nbody: {\n    token: 'ExampleToken',\n    giorno: '04-13-2021',\n    orario: '08:00',\n    totdisponibilita: 5\n}",
+        "content": "POST http://localhost:3000/insertdisp\n\nbody: {\n    token: 'ExampleToken',\n    giorno: '04-13-2021',\n    orario: '08:00',\n    totdisponibilita: 5\n}",
         "type": "js"
       }
     ],
@@ -138,7 +138,7 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "http://localhost:3000/logfile?level=info\nhttp://localhost:3000/logfile?level=error",
+        "content": "GET http://localhost:3000/logfile?level=info\nGET http://localhost:3000/logfile?level=error",
         "type": "js"
       }
     ],
@@ -227,7 +227,7 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "http://localhost:3000/prenotazioni?token=TokenExample\nhttp://localhost:3000/prenotazioni?token=TokenExample&cf=ABCDEF01G23H456",
+        "content": "GET http://localhost:3000/prenotazioni?token=TokenExample\nGET http://localhost:3000/prenotazioni?token=TokenExample&cf=ABCDEF01G23H456",
         "type": "js"
       }
     ],
@@ -371,7 +371,7 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "http://localhost:3000/registrati?token=TokenExample\nhttp://localhost:3000/registrati?token=TokenExample&cf=ABCDEF01G23H456",
+        "content": "GET http://localhost:3000/registrati?token=TokenExample\nGET http://localhost:3000/registrati?token=TokenExample&cf=ABCDEF01G23H456",
         "type": "js"
       }
     ],

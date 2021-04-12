@@ -9,8 +9,8 @@
  * @apiName GetLog
  * @apiGroup Log
  * @apiExample {js} Example usage:
- *      http://localhost:3000/logfile?level=info
- *      http://localhost:3000/logfile?level=error
+ *      GET http://localhost:3000/logfile?level=info
+ *      GET http://localhost:3000/logfile?level=error
  *
  * @apiParam {String} level Livello del file di log richiesto: 'info' o 'error'
  *
@@ -58,8 +58,8 @@
  * @apiName GetRegistrati
  * @apiGroup Registrati
  * @apiExample {js} Example usage:
- *      http://localhost:3000/registrati?token=TokenExample
- *      http://localhost:3000/registrati?token=TokenExample&cf=ABCDEF01G23H456
+ *      GET http://localhost:3000/registrati?token=TokenExample
+ *      GET http://localhost:3000/registrati?token=TokenExample&cf=ABCDEF01G23H456
  * 
  *
  * @apiParam {String} token Token di autenticazione
@@ -146,7 +146,7 @@
  * @apiName InserisciDisponibilità
  * @apiGroup Inserisci Disponibilità
  * @apiExample {js} Example usage:
- *      http://localhost:3000/insertdisp
+ *      POST http://localhost:3000/insertdisp
  *
  *      body: {
  *          token: 'ExampleToken',
@@ -219,8 +219,8 @@
  * @apiName GetPrenotazioni
  * @apiGroup Prenotazioni
  * @apiExample {js} Example usage:
- *      http://localhost:3000/prenotazioni?token=TokenExample
- *      http://localhost:3000/prenotazioni?token=TokenExample&cf=ABCDEF01G23H456
+ *      GET http://localhost:3000/prenotazioni?token=TokenExample
+ *      GET http://localhost:3000/prenotazioni?token=TokenExample&cf=ABCDEF01G23H456
  * 
  *
  * @apiParam {String} token Token di autenticazione
