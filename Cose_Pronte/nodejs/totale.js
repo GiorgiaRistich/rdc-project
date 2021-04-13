@@ -9,26 +9,25 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 var cookieParser = require('cookie-parser')
 app.use(cookieParser())
+require('dotenv').config()
 
-var rawdata = fs.readFileSync('credentials.json');
-var sec = JSON.parse(rawdata);
-client_id = sec.web.client_id;
-client_secret = sec.web.client_secret;
-red_uri = sec.web.redirect_uris[0];
 
-var idchatmedico = sec.idchatmedico
-var token = sec.token
-var tokenapi = sec.tokenapi
-var dbpassword = sec.dbpassword //db password postgres
-var db = sec.db //db postgres
-var amqphost = sec.amqphost
-var database=sec.database    //url database couch
-var host=sec.host   //url host
-var postgresuser=sec.postgresuser
-var postgreshost=sec.postgreshost
+var client_id = process.env.client_id
+var client_secret = process.env.client_secret
+var red_uri = process.env.redirect_uris
+var idchatmedico = process.env.idchatmedico
+var token = process.env.token
+var tokenapi = process.env.tokenapi
+var dbpassword = process.env.dbpassword //db password postgres
+var db = process.env.db //db postgres
+var amqphost = process.env.amqphost
+var database=process.env.database    //url database couch
+var host=process.env.host   //url host
+var postgresuser=process.env.postgresuser
+var postgreshost=process.env.postgreshost
+var mailuser=process.env.mailuser
+var mailpass=process.env.mailpass
 var pathlog='file_log/'
-var mailuser=sec.mailuser
-var mailpass=sec.mailpass
 
 var smtpTransport = nodemailer.createTransport({    //necessario per l'invio di mail
     service: "Gmail",
