@@ -14,7 +14,7 @@ require('dotenv').config()
 
 var client_id = process.env.client_id
 var client_secret = process.env.client_secret
-var red_uri = process.env.redirect_uris
+var red_uri = process.env.redirect_uri
 var idchatmedico = process.env.idchatmedico
 var token = process.env.token
 var tokenapi = process.env.tokenapi
