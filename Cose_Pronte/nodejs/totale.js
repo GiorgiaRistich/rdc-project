@@ -535,17 +535,17 @@ app.get('/got_token', function (req, res) {
 function log(severity, msg) {
     amqp.connect(amqphost, function (error0, connection) {
         if (error0) {
-            log("error", error0.toString())
-            throw error0
+            log(severity, msg)
+            return
         }
         if (severity != "info" && severity!="error") {
-            log("error","errore nell'uso funzione")
-            throw 'error'
+            log(severity, msg)
+            return
         }
         connection.createChannel(function (error1, channel) {
             if (error1) {
-                log("error", error1.toString())
-                throw error1;
+                log(severity, msg)
+                return
             }
             var exchange = 'direct_logs';
 
@@ -563,83 +563,99 @@ function log(severity, msg) {
 
 
 
-amqp.connect(amqphost, function (error0, connection) {
-    if (error0) {
-        log("error", error0.toString())
-        throw error0;
-    }
-    connection.createChannel(function (error1, channel) {
-        if (error1) {
-            log("error", error1.toString())
-            throw error1;
-        }
-        var exchange = 'direct_logs';
 
-        channel.assertExchange(exchange, 'direct', {
-            durable: false
-        });
+function amqplisteninfo(){
 
-        channel.assertQueue('', {
-            exclusive: true
-        }, function (error2, q) {
-            if (error2) {
-                log("error", error2.toString())
-                throw error2;
+        amqp.connect(amqphost, function (error0, connection) {
+            if (error0) {
+                amqplisteninfo()
+                return
             }
-
-            channel.bindQueue(q.queue, exchange, "info");
-
-            channel.consume(q.queue, function (msg) {
-                fs.appendFile('file_log/info.log', msg.content.toString()+'\n', function(err){
-                    if (err) throw err
-                })
-            }, {
-                noAck: true
+            connection.createChannel(function (error1, channel) {
+                if (error1) {
+                    amqplisteninfo()
+                    return
+                }
+                var exchange = 'direct_logs';
+        
+                channel.assertExchange(exchange, 'direct', {
+                    durable: false
+                });
+        
+                channel.assertQueue('', {
+                    exclusive: true
+                }, function (error2, q) {
+                    if (error2) {
+                        amqplisteninfo()
+                        return
+                    }
+        
+                    channel.bindQueue(q.queue, exchange, "info");
+        
+                    channel.consume(q.queue, function (msg) {
+                        fs.appendFile('file_log/info.log', msg.content.toString()+'\n', function(err){
+                            if (err) {
+                                amqplisteninfo()
+                                return
+                            }
+                        })
+                    }, {
+                        noAck: true
+                    });
+                });
             });
         });
-    });
-});
+}
 
 
-amqp.connect(amqphost, function (error0, connection) {
-    if (error0) {
-        log("error", error0.toString())
-        throw error0;
-    }
-    connection.createChannel(function (error1, channel) {
-        if (error1) {
-            log("error", error1.toString())
-            throw error1;
-        }
-        var exchange = 'direct_logs';
 
-        channel.assertExchange(exchange, 'direct', {
-            durable: false
-        });
 
-        channel.assertQueue('', {
-            exclusive: true
-        }, function (error2, q) {
-            if (error2) {
-                log("error", error2.toString())
-                throw error2;
+function amqplistenerror(){
+    
+        amqp.connect(amqphost, function (error0, connection) {
+            if (error0) {
+                amqplistenerror()
+                return
             }
-
-            channel.bindQueue(q.queue, exchange, "error");
-
-            channel.consume(q.queue, function (msg) {
-                fs.appendFile('file_log/error.log', msg.content.toString()+'\n', function(err){
-                    if (err) throw err
-                })
-            }, {
-                noAck: true
+            connection.createChannel(function (error1, channel) {
+                if (error1) {
+                    amqplistenerror()
+                    return
+                }
+                var exchange = 'direct_logs';
+        
+                channel.assertExchange(exchange, 'direct', {
+                    durable: false
+                });
+        
+                channel.assertQueue('', {
+                    exclusive: true
+                }, function (error2, q) {
+                    if (error2) {
+                        amqplistenerror()
+                        return
+                    }
+        
+                    channel.bindQueue(q.queue, exchange, "error");
+        
+                    channel.consume(q.queue, function (msg) {
+                        fs.appendFile('file_log/error.log', msg.content.toString()+'\n', function(err){
+                            if (err) {
+                                amqplistenerror()
+                                return
+                            }
+                        })
+                    }, {
+                        noAck: true
+                    });
+                });
             });
         });
-    });
-});
 
+}
 
-
+amqplisteninfo()
+amqplistenerror()
 
 
 

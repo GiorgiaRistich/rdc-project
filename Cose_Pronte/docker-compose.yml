@@ -1,3 +1,9 @@
+#sudo docker-compose up -d
+#sudo docker-compose down
+#sudo docker-compose ps
+#docker stop cose_pronte_nodejs_1
+#docker logs cose_pronte_nodejs_1
+
 version: '3'
 
 services:
