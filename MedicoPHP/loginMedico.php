@@ -37,12 +37,12 @@
           $TempoDiValidita = 7200; //Cookie attivo per 2 ore
         setcookie('LOGIN', $codPassword, time() + $TempoDiValidita);
         header('Location: paginaMedico.php');
-      } else { ?>
-        <script>alert("mail o password sbagliata")</script>
-      <?php }
-    } else { ?>
-      <script>alert("mail o password sbagliata")</script>
-    <?php }
+      } else { 
+        echo('<script>alert("mail o password sbagliata")</script>');
+      }
+    } else {
+      echo('<script>alert("mail o password sbagliata")</script>');
+    }
   }
   ?>
 
