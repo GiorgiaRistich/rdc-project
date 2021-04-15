@@ -447,7 +447,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response without cf:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"registrati\": [\n        {\n            \"cf\": \"ABCDEF01G23H456I\",\n            \"nome\": \"Nome Cognome\",\n            \"mail\": \"mail@dominio.it\",\n            \"verificato\": false,\n\n            \"booked\": false\n        },\n        {\n            \"cf\": \"QWERTY01U23I456O\",\n            \"nome\": \"Nome Cognome\",\n            \"mail\": \"mail2@dominio.com\",\n            \"verificato\": true,\n            \"booked\": false\n        }\n    ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"registrati\": [\n        {\n            \"cf\": \"ABCDEF01G23H456I\",\n            \"nome\": \"Nome Cognome\",\n            \"mail\": \"mail@dominio.it\",\n            \"verificato\": false,\n            \"booked\": false\n        },\n        {\n            \"cf\": \"QWERTY01U23I456O\",\n            \"nome\": \"Nome Cognome\",\n            \"mail\": \"mail2@dominio.com\",\n            \"verificato\": true,\n            \"booked\": false\n        }\n    ]\n}",
           "type": "json"
         },
         {
