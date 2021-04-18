@@ -136,7 +136,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                             log("error", error4.toString())
                                             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
+                                            res.cookie('cookie', randcookie) //manda il cookie
                                             res.redirect(host+'/visualizzaprenotazione?CF='+info.CF) //reindirizza a visualizzaprenotazione
                                         }
                                     });
@@ -152,7 +152,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                             log("error", error4.toString())
                                             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
+                                            res.cookie('cookie', randcookie) //manda il cookie
                                             res.redirect(host+'/visualizzaprenotazione?CF='+info.CF) //reindirizza a visualizzaprenotazione
                                         }
                                     });
@@ -193,7 +193,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                             log("error", error4.toString())
                                             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
+                                            res.cookie('cookie', randcookie) //manda il cookie
                                             res.redirect(host+'/paginadiprenotazione?CF='+info.CF) //reindirizza a paginadiprenotazione
                                         }
                                     });
@@ -209,7 +209,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                             log("error", error4.toString())
                                             res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
                                         } else {
-                                            res.cookie('cookie', randcookie, {maxAge: 3600000}) //manda il cookie
+                                            res.cookie('cookie', randcookie) //manda il cookie
                                             res.redirect(host+'/paginadiprenotazione?CF='+info.CF) //reindirizza a pagina di prenotazione
                                         }
                                     });
@@ -353,7 +353,7 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                                         res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                                     } else {
                                         log("info", "cookie inviato")
-                                        res.cookie('cookie', randcookie, {maxAge: 3600000}) //mando il cookie
+                                        res.cookie('cookie', randcookie) //mando il cookie
                                         res.redirect(host+'/paginadiprenotazione?CF='+paziente._id) //reindirizzo a paginadiprenotazione
                                     }
                                 });
@@ -370,7 +370,7 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                                         res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
                                     } else {
                                         log("info", "cookie inviato")
-                                        res.cookie('cookie', randcookie, {maxAge: 3600000}) //invio il nuovo cookie
+                                        res.cookie('cookie', randcookie) //invio il nuovo cookie
                                         res.redirect(host+'/paginadiprenotazione?CF='+paziente._id) //reindirizzo a paginadiprenotazione
                                     }
                                 });
