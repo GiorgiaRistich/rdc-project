@@ -31,11 +31,13 @@
     {
       if ($codPassword === "6644b56f6215447b5af219a41923c5a9") #passwordmedico
       {
-        if ($_POST["remember"] === true)
+        if ($_POST["remember"] === true) {
           $TempoDiValidita = 2592000;  //Cookie attivo per 30 giorni
-        else
-          $TempoDiValidita = 7200; //Cookie attivo per 2 ore
-        setcookie('LOGIN', $codPassword, time() + $TempoDiValidita);
+          setcookie('LOGIN', $codPassword, time() + $TempoDiValidita);
+        }
+        else {
+          setcookie('LOGIN', $codPassword); //Cookie attivo per la sessione
+        }
         header('Location: paginaMedico.php');
       } else { 
         echo('<script>alert("mail o password sbagliata")</script>');
