@@ -1,0 +1,467 @@
+
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #444444;
+}
+
+a {
+  color: #106eea;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3b8af2;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto", sans-serif;
+}
+
+
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996; /* specifica lo z-order di un elemento posizionato (en-US) e dei suoi discendenti*/
+  background: #106eea;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+}
+
+.back-to-top i {
+  font-size: 28px;
+  color: #fff;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+  background: #3284f1;
+  color: #fff;
+}
+
+.back-to-top.active {/*rappresenta un elemento (come un bottone) che viene attivato dall'utente*/
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  background: #fff;
+  transition: all 0.5s;
+  z-index: 997;
+  height: 86px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+#header.fixed-top {
+  height: 70px;
+}
+
+#header .logo {
+  font-size: 30px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  font-family: "Poppins", sans-serif;
+  margin-right: 25%;
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/**
+* Desktop Navigation 
+*/
+.navbar {
+  padding: 0;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+  margin-left: 20%;
+}
+
+.navbar li {
+  position: relative;
+  margin-top: 5%;
+  
+}
+
+.navbar > ul > li {
+  white-space: nowrap; /*Sequences of whitespace will collapse into a single whitespace. Text will never wrap to the next line. The text continues on the same line until a <br> tag is encountered*/
+  padding: 10px 0 10px 28px;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222222;
+  white-space: nowrap;
+  transition: 0.3s;
+  position: relative;
+  
+}
+
+
+.navbar a:hover, .navbar .active, .navbar li:hover > a { /*cambia colore la scritta quando ci vado sopra*/
+  color: #106eea;
+}
+
+
+/*--------------------------------------------------------------
+# Prenotazioni Section
+--------------------------------------------------------------*/
+#divdisp{
+  overflow: auto;
+  height: 400px;
+}
+
+
+#prenotazioni {
+  width: 100%;
+  height: 75vh;
+  position: relative;
+}
+
+#prenotazioni:before {
+  content: "";
+  background: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#prenotazioni .container {
+  position: relative;
+}
+
+#prenotazioni h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #222222;
+  font-family: "Poppins", sans-serif;
+  
+}
+
+#prenotazioni h1 span {
+  color: #106eea;
+}
+
+#prenotazioni h2 {
+  color: #555555;
+  margin: 5px 0 30px 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+#prenotazioni .btn-get-started {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 28px;
+  border-radius: 4px;
+  transition: 0.5s;
+  color: #fff;
+  background: #106eea;
+}
+
+#prenotazioni .btn-get-started:hover {
+  background: #247cf0;
+}
+.date-intl{
+  font-size: large;
+}
+
+.cf{
+  font-size: large;
+}
+.nome{
+  font-size: large;
+}
+.email{
+  font-size: large;
+}
+.nomin{
+  font-size: large;
+}
+.ma{
+  font-size: large;
+}
+
+
+
+@media (min-width: 1024px) {
+  #prenotazioni {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 768px) {
+  #prenotazioni {
+    height: 100vh;
+  }
+  #prenotazioni h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #prenotazioni h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+
+}
+
+@media (max-height: 500px) {
+  #prenotazioni {
+    height: 120vh;
+  }
+}
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.section-bg {
+  background-color: #f6f9fe;
+}
+
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  padding: 8px 20px;
+  margin: 0;
+  background: #e7f1fd;
+  color: #106eea;
+  display: inline-block;
+  text-transform: uppercase;
+  border-radius: 50px;
+}
+
+.section-title h3 {
+  margin: 15px 0 0 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.section-title h3 span {
+  color: #106eea;
+}
+
+.section-title p {
+  margin: 15px auto 0 auto;
+  font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+  .section-title p {
+    width: 50%;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# Codice Fiscale
+--------------------------------------------------------------*/
+.codicefiscale .content h3 {
+  font-weight: 600;
+  font-size: 26px;
+}
+
+.btn-primary{
+  margin: 0%;
+  margin-top: 2%;
+  float: left;
+}
+
+
+
+/*--------------------------------------------------------------
+# Counts
+--------------------------------------------------------------*/
+.counts {
+  padding: 70px 0 60px;
+}
+
+.counts .count-box {
+  padding: 30px 30px 25px 30px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  background: #f1f6fe;
+}
+
+.counts .count-box span {
+  font-size: 36px;
+  display: block;
+  font-weight: 600;
+  color: #062b5b;
+}
+
+.counts .count-box p {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+b{
+  color: black;
+  font-size: 25px;
+}
+
+
+
+/*--------------------------------------------------------------
+# Slot Temporale
+--------------------------------------------------------------*/
+
+.animatebutton{
+  margin-left: 500%;
+  margin-top:30%;
+  background-color:#3b8af2;
+  color: white;
+}
+.animatebutton:hover{
+  margin-left: 500%;
+  margin-top:30%;
+  background-color:#3b8af2;
+}
+.toast {
+  transition: 0.32s all ease-in-out
+}
+
+.toast-container--fade {
+  right: 0;
+  bottom: 0
+}
+
+.toast-container--fade .toast-wrapper {
+  display: inline-block
+}
+
+.toast.fade-init {
+  opacity: 0
+}
+
+.toast.fade-show {
+  opacity: 1
+}
+
+.toast.fade-hide {
+  opacity: 0
+}
+
+
+/*--------------------------------------------------------------
+# Testimonials
+--------------------------------------------------------------*/
+.testimonials {
+  padding: 80px 0;
+  background-color: #0c6eee;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+}
+
+.testimonials::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.testimonials .section-header {
+  margin-bottom: 40px;
+}
+
+#giuro{
+  text-align: center;
+  color: white  !important;
+}
+#slider{
+  text-align:center;
+  color:white;
+  font-weight:lighter;
+}
+
+@media (min-width: 992px) {
+  .testimonials .testimonial-item p {
+    width: 80%;
+  }
+}
+
+/*--------------------------------------------------------------
+# Telegram
+--------------------------------------------------------------*/
+
+.telegram .telegram-item .telegram-info h4 {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+  color: #222222;
+}
+
+
+#bottone{
+  margin:30%;
+  margin-left: 80%;
+  box-sizing: border-box;
+  padding: 1em 2em;
+  border: 2px solid var(blue);
+  border-radius: 1em;
+  background: var(azure);
+  transform-style: preserve-3d;
+  transition: all 175ms cubic-bezier(0, 0, 1, 1);
+
+}
+
+
+
