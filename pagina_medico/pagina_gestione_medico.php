@@ -21,7 +21,14 @@
 </head>
 
 <body>
-
+<?php
+    if(!isset($_COOKIE["LOGIN"])) {
+        die();
+    }
+    if ("6644b56f6215447b5af219a41923c5a9"!==$_COOKIE["LOGIN"]) {
+        die();
+    }
+?>
 
   <!-- ======= Header ======= -->
   <header id="header" class="navbar-default navbar-fixed-top d-flex align-items-center"> <!--classe specifica Bootstrap-->

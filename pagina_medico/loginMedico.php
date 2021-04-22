@@ -38,7 +38,7 @@
         else {
           setcookie('LOGIN', $codPassword); //Cookie attivo per la sessione
         }
-        header('Location: paginaMedico.php');
+        header('Location: pagina_gestione_medico.php');
       } else { 
         echo('<script>alert("mail o password sbagliata")</script>');
       }
