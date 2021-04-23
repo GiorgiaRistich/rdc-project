@@ -1,0 +1,42 @@
+#mapimg {
+    display:inline-block;
+    margin-right:20px;
+}
+#rightdiv {
+    display:inline-block;
+    font-family: "Lucida Console", "Courier New", monospace;
+    vertical-align: top;
+    width: 310px;
+}
+button {
+    border: none;
+    color: white;
+    padding: 15px;
+    width: 120px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #008CBA;
+    border-radius: 8px;
+}
+.day {
+    font-weight: bold;
+}
+#divdisp {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height:300px;
+    border:2px solid #008CBA;
+    overflow:auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#sca {
+    margin-top: 0px;
+    font-family: sans-serif;
+    font-size: large;
+    color: #008CBA;
+    text-align: center;
+}
+#buttons {
+    text-align:center;
+}
