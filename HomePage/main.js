@@ -1,3 +1,4 @@
+
 function formerror() {
     $(".formelem").addClass("formerrato");
     setTimeout(() => {
@@ -5,19 +6,25 @@ function formerror() {
     }, 500);
 }
 
+function updatedosi(val) {
+    $('#pdosi').animate({
+    counter: val
+  }, {
+    duration: 2000,
+    easing: 'swing',
+    step: function (now) {
+      $(this).text(Math.ceil(now));
+    }
+  });
+}
+
 function mostradosi() {
     $("dosi").ready(function () {
         jQuery.ajax({
             url: "http://localhost:3001/dosi",
-            header: {
-                "Access-Control-Allow-Origin":"*"
-            },
             success: function (data) {
-                console.log(data)
-                $('#pdosi').val(data)
+                updatedosi(data)
             }
         })
     });
 }
-
-window.onload = mostradosi()

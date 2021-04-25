@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var cookieParser = require('cookie-parser')
 app.use(cookieParser())
 require('dotenv').config()
+var cors = require('cors')
+app.use(cors())
 
 
 var client_id = process.env.client_id
@@ -28,6 +30,7 @@ var postgreshost=process.env.postgreshost
 var mailuser=process.env.mailuser
 var mailpass=process.env.mailpass
 var pathlog='file_log/'
+var lastdosi="10"
 
 var smtpTransport = nodemailer.createTransport({    //necessario per l'invio di mail
     service: "Gmail",
@@ -425,10 +428,11 @@ app.get('/dosi', function(req, res){
                     dositotali=dositotali+item.dosi_somministrate
                 })
                 log("info","dosi calcolate")
+                lastdosi=dositotali.toString()
                 res.send(dositotali.toString())
             }
             else {
-                log("error", error.toString())
+                res.send(lastdosi)
             }
         }
     );

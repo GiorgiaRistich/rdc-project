@@ -21,10 +21,16 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-light bg-light static-top ml-auto  ">
-    <div class="container" id="contalto">
-      <a class="navbar-brand">Sei un medico?</a>
-      <a type="button" class="btn btn-outline-primary" href="../pagina_medico/loginMedico.php">Accedi</a>
+  <nav class="navbar navbar-light bg-light static-top ml-auto border-info">
+    <div class="container">
+      <div>
+        <img src="primulatesto.png" id="primulaheader">
+        <p id="dotthead" class="navbar-brand">Dottor Mario Rossi</p>
+      </div>
+      <div>
+        <div class="navbar-brand">Sei un medico?</div>
+        <a type="button" class="btn btn-outline-primary" href="../pagina_medico/loginMedico.php">Accedi</a>
+      </div>
     </div>
     </div>
   </nav>
@@ -35,7 +41,7 @@
     <div class="container mx-auto ">
       <div class="row">
         <div class="col-xl-9 mx-lg-auto">
-          <h1 class="mb-5">Prenota qui il tuo vaccino</h1>
+          <h1 class="mb-5" id="prenotaora">Prenota qui il tuo vaccino</h1>
         </div>
         <div class="col-md-15 col-lg-10 col-xl-10 ">
 
@@ -63,7 +69,7 @@
 
               </div><br>
               <div class="col-12 col-md-3 mb-md-2">
-                <button type="submit" class="btn btn btn-lg btn-info" id="accedi">Prenota subito!</button>
+                <button type="submit" class="btn btn-lg btn-primary border" id="accedi">Prenota subito!</button>
               </div>
             </form>
           </div>
@@ -76,23 +82,25 @@
   </header>
 
   <!-- Icons Grid -->
-  <section class="features-icons bg-light text-center">
+  <section class="features-icons bg-light text-center" onmouseover="mostradosi()">
     <div class="container">
       <div class="row">
 
-        <div class=" img col-lg-4">
+        <div class="img col-lg-4">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-lg-flex">
-              <!--<i class="icon-layers m-auto text-primary"></i>-->
-              <!--icona-->
               <img src="syringe.png" id="siringa" class="img-circle">
             </div>
-            <p id="pdosi"></p>
-            <h3> dosi</h3> <!-- inserire qui il valore-->
-            <p class="lead mb-0">dosi totali di vaccino anti-COVID-19 somministrate</p>
           </div>
         </div>
-
+        <div class="col-lg-4 elemdosi">
+          <p class="lead mb-0">Dosi totali di vaccino anti COVID-19 somministrate in Italia:</p>
+          <br>
+          <h3 id="pdosi">0</h3>
+        </div>
+        <div class="col-lg-4 text-white showcase-img">
+          <img src="primula.png" id="primuladosi">
+        </div>
       </div>
     </div>
   </section>
@@ -103,69 +111,73 @@
       <div class="row no-gutters">
 
         <!--<div class="col-lg-6 order-lg-2 text-white showcase2-img" style="background-image: url('logoMedici.png');"></div>-->
-        <div class="col-lg-6 order-lg-2 text-white showcase-img">
-          <img src="logoMedici.png" id="immagine">
-        </div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Dottor Nome Cognome</h2>
-          <p class="lead mb-0">Medico specialista in vattela a pesca </p>
-          <p class="lead mb-0">via Pinco Pallo 26,RM </p>
-          <p class="lead mb-0">telefono: 3943829274</p>
-          <p class="lead "> ORARIO: <br>lun: 10.00-19.00 <br>
-            mar: 10.00-19.00 <br>
-            mer: 10.00-19-00 <br>
-            gio: 10.00-19.00 <br>
-            ven: 10.00-19.00 <br>
-            sab: 10.00-13.00 </p>
+        
+        <div class="col-lg-4 order-lg-1 my-auto showcase-text" id="divmedico">
+          <h2 id="hmedico">Dottor Mario Rossi</h2>
+          <p class="lead mb-0"><i>Medico specialista in medicina generale</i></p>
+          <p class="lead mb-0"><b>Indirizzo: </b>viale del Policlinico, 155</p>
+          <p class="lead mb-0"><b>Telefono: </b><a href="tel:3339876543">333.9876543</a></p>
+          <p class="lead "> <b>ORARIO: </b><br>lun: 10.00-13.00 <br>
+            mar: 17.00-19.00 <br>
+            mer: 10.00-13-00 <br>
+            gio: 17.00-19.00 <br>
+            ven: 10.00-13.00</p>
 
         </div>
-      </div>
-      <div class="row no-gutters">
-        <!--<div class="col-lg-6 text-white showcase-img" style="background-image: url('primula.png');"></div>-->
-        <div class="col-lg-6 text-white showcase-img">
-          <img src="primula.png" id="immagine2">
+
+        <div class="col-lg-4 order-lg-2">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.3407815737273!2d12.508352615026258!3d41.907032371582766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f61242905ab5d%3A0x60bff8ec676f6027!2sPoliclinico%20Umberto%20I%20di%20Roma!5e0!3m2!1sit!2sit!4v1619377820884!5m2!1sit!2sit" width="500" height="450" class="mappa" allowfullscreen="" loading="lazy"></iframe>
         </div>
 
-        <div class="col-12 col-md-3 mb-md-2">
-          <button type="submit" class="btn btn btn-lg btn-info" id="bottone1">info progetto</button>
+        <div class="col-lg-4 order-lg-3 text-white showcase-img">
+          <img src="caduceo.png" id="immagine">
         </div>
       </div>
+
+    </section>
+    <section class="showcase bg-light">
       <div class="row no-gutters">
-        <!-- <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('documents.png');"></div>-->
-        <div class="col-lg-6 order-lg-2 text-white showcase-img">
-          <img src="documents.png" id="immagine3">
+       
+        <div class="col-lg-6 text-white showcase-img coppia">
+          <a href=""><img src="info.png" id="immagine2"></a>
+          <br>
+          <a type="button" class="btn btn-lg btn-info" id="bottone1" href="">Info progetto</a>
+          
         </div>
-        <div class="col-12 col-md-3 mb-md-2">
-          <button class="btn btn btn-lg btn-info" id="bottone2">documentazione API</button>
+
+      
+       
+        <div class="col-lg-6 order-lg-2 text-white showcase-img coppia">
+          <a href=""><img src="documents.png" id="immagine3"></a>
+          <br>
+          <a type="button" class="btn btn-lg btn-info" id="bottone2" href="">Documentazione API</a>
         </div>
+      
       </div>
     </div>
   </section>
 
   <!-- Testimonials -->
-  <section class="testimonials text-center bg-light">
+  <section class="testimonials text-center">
     <div class="container">
-      <h2 class="mb-5">chi siamo</h2>
+      <h2 class="mb-5">il Team</h2>
       <div class="row">
         <div class="col-lg-4">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="myAvatar-2.svg" alt="">
             <h5>Andrea</h5>
-            <p class="font-weight-light mb-0">"Lavorare al progetto è stata un'esperienza utile e bella"</p>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="myAvatar.svg" alt="">
             <h5>Chiara</h5>
-            <p class="font-weight-light mb-0">"Ho avuto l'opportunità di imparare molte cose nuove"</p>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="myAvatar-3.svg" alt="">
             <h5>Giorgia</h5>
-            <p class="font-weight-light mb-0">"questo percorso mi ha fatto crescere didatticamente"</p>
           </div>
         </div>
       </div>
