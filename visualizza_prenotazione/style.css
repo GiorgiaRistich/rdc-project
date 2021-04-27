@@ -51,7 +51,7 @@ body {
 }
 
 .rigdx {
-    padding-left: 10px;
+    padding-left: 2%;
     width: 30rem;
 }
 
@@ -59,4 +59,32 @@ body {
     .noPrint{
       display:none;
     }
-  }
+}
+
+#buttons {
+    margin-top: 5%;
+}
+
+.buttons {
+    padding: 0.5rem 1rem;
+    font-size: large;
+}
+
+#bpdf {
+    margin-right: 0.2rem;
+}
+
+#bstampa {
+    margin-left: 0.2rem;
+}
+
+#bcalendar {
+}
+
+#stat {
+    width: 8rem;
+}
+
+#tableb{
+    margin: 0 auto;
+}

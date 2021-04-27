@@ -43,10 +43,24 @@
     echo "<tr><td class='rigsx'>Orario prenotazione</td><td class='rigdx'>".$data[1]."</td></tr>";
     echo "</table></div>";
 ?>
-    
-    <button onclick="window.open('<?php echo '../PDF_PHP/createpdf.php?CF='.$_GET['CF'] ?>');" class="noPrint" >PDF</button>
-    <button onclick="window.print();" class="noPrint">Stampa</button>
+    <div id="buttons">
+        <table id="tableb"><tr>
+            <td>
+                <button onclick="progress('<?php echo $_GET['CF'] ?>')" class="noPrint buttons btn btn-primary" id="bpdf">Scarica PDF</button>
+                <div class="progress" id="stat" hidden>
+                    <div class="progress-bar" id="intstat" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </td>
+            <td>
+                <button onclick="window.open('http:\/\/localhost:3000/logincalendar?cf='+'<?php echo $_GET['CF'] ?>')" class="noPrint buttons btn btn-primary" id="bcalendar">Aggiungi evento al calendario!</button>
+            </td>
+            <td>
+                <button onclick="window.print();" class="noPrint buttons btn btn-primary" id="bstampa">Stampa</button>
+            </td>
+        </tr></table>
+    </div>
 
+    <p>TELEGRAM QRCODE CHAT BOT</p>
 
 </body>
 </html>
