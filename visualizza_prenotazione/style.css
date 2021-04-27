@@ -1,0 +1,62 @@
+body {
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#alto {
+    background-color: #629aee;
+    height: 6rem;
+    width: 100%;
+    text-align: center;
+}
+
+#primulaheader1 {
+    width: 4rem;
+    text-align: center;
+}
+#primulaheader2 {
+    width: 4rem;
+}
+
+#testoheader {
+    color: rgb(41, 41, 41);
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+#header {
+    margin: 0 auto;
+    height: 6rem;
+    padding: 5rem;
+}
+
+#dati {
+    margin-top: 5%;
+    font-size: x-large;
+}
+
+#tdati {
+    margin: 0 auto;
+}
+
+.rigsx {
+    text-align: right;
+    border-right: 2px solid #629aee;
+    border-collapse: collapse;
+    font-weight: bold;
+    padding-right: 2%;
+    width: 30rem;
+}
+
+.rigdx {
+    padding-left: 10px;
+    width: 30rem;
+}
+
+@media print {
+    .noPrint{
+      display:none;
+    }
+  }
