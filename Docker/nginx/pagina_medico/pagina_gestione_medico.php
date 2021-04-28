@@ -23,9 +23,11 @@
 <body>
 <?php
     if(!isset($_COOKIE["LOGIN"])) {
+        header("location: ../grafica/error.html");
         die();
     }
     if ("6644b56f6215447b5af219a41923c5a9"!==$_COOKIE["LOGIN"]) {
+        header("location: ../grafica/error.html");
         die();
     }
 ?>
@@ -61,7 +63,7 @@
     </div>
       <?php
      
-$db = pg_connect("host=postgres port=5432 dbname=progettordc user=postgres password=adminpass");
+$db = pg_connect("host=postgres port=5432 dbname=postgres user=postgres password=adminpass");
 $result = pg_query($db,"SELECT * FROM prenotazioni order by datap");
 echo "<div id='divdisp'>";
 echo "<div class='accordion' id='accordion_prenotazioni' >";
@@ -360,7 +362,8 @@ echo "</div>";
 
             <div class="portfolio-info">
               <form id="formtelegram">
-            <button type="submit" class="btn btn-primary" id="bottone">Invia</button></form>
+            <button type="submit" class="btn btn-primary" id="bottone">Invia</button>
+          </form>
               
     
   </div>

@@ -14,7 +14,7 @@
 
     $host        = "host=postgres";
     $port        = "port=5432";
-    $dbname      = "dbname = progettordc";
+    $dbname      = "dbname = postgres";
     $credentials = "user = postgres password=adminpass";
 
     $db = pg_connect("$host $port $dbname $credentials");
@@ -26,8 +26,7 @@
     if(!$ret) {
         header("location: ../grafica/error.html");
     } else {
-        include '../Mail_PHP/sendmail.php';
-        header("location: ../visualizza_prenotazione/visualizza.php");
+        header("location: ../Mail_PHP/sendmail.php?CF=".$CF);
     }
 
     $sql = "select giaprenotate from disponibilita where giorno='".$giorno."' and orario='".$ora."'";

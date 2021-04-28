@@ -8,7 +8,7 @@
 
     $host        = "host = postgres";
     $port        = "port = 5432";
-    $dbname      = "dbname = progettordc";
+    $dbname      = "dbname = postgres";
     $credentials = "user=postgres password=adminpass";
 
     $db = pg_connect("$host $port $dbname $credentials");
@@ -74,4 +74,5 @@
 
     $mail->send();
 
+    header("location: ../Success/exitiframe.php?CF=".$_GET["CF"]);
 ?>

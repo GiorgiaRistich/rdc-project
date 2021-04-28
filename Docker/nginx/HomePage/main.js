@@ -21,7 +21,7 @@ function updatedosi(val) {
 function mostradosi() {
     $("dosi").ready(function () {
         jQuery.ajax({
-            url: "http://node:3000/dosi",
+            url: "http://localhost:3000/dosi",
             success: function (data) {
                 updatedosi(data)
             }

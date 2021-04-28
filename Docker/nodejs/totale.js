@@ -23,7 +23,7 @@ var tokenapi = process.env.tokenapi
 var dbpassword = process.env.dbpassword //db password postgres
 var db = process.env.db //db postgres
 var amqphost = process.env.amqphost
-var database=process.env.database    //url database couch
+var database=process.env.database   //url database couch
 var host=process.env.host   //url host
 var postgresuser=process.env.postgresuser
 var postgreshost=process.env.postgreshost
@@ -43,7 +43,7 @@ var smtpTransport = nodemailer.createTransport({    //necessario per l'invio di 
 app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form iniziale
     var info = req.body //CF, name, mail nel body
     request({   //controlla se il CF è nel database degli assistiti del medico
-        url: database+'/cf_medico/'+info.CF,
+        url: database+'cf_medico/'+info.CF,
         method: 'GET'
     }, function(error, response, body){
         if (response.statusCode == 404) {   //se non è un assistito reindirizza alla pagina noCF
@@ -74,7 +74,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                     }, function(error3, response3, body3){
                         if (error3) {
                             log("error", error3.toString())
-                            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+                            res.redirect('http://localhost/grafica/error.html') 
                         }
                         else {
                             log("info","pronti a verificare")
@@ -93,7 +93,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                         }, function(error3, response3, body3){
                             if(error3) {
                                 log("error", error3.toString());
-                                res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+                                res.redirect('http://localhost/grafica/error.html') 
                             } else {
                                 var info3 = JSON.parse(body3);  //aggiorna i dati in database con i nuovi inseriti
                                 info3.name=info.name
@@ -106,7 +106,7 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                 }, function(error4, response4, body4){
                                     if(error4) {
                                         log("error", error4.toString())
-                                        res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+                                        res.redirect('http://localhost/grafica/error.html') 
                                     } else {    //reindirizza a sendverify
                                         res.redirect(host+'/sendverify?CF='+info.CF)
                                     }
@@ -137,10 +137,10 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                     }, function(error4, response4, body4){
                                         if(error4) {
                                             log("error", error4.toString())
-                                            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+                                            res.redirect('http://localhost/grafica/error.html') 
                                         } else {
                                             res.cookie('cookie', randcookie) //manda il cookie
-                                            res.redirect(host+'/visualizzaprenotazione?CF='+info.CF) //reindirizza a visualizzaprenotazione
+                                            res.redirect('http://localhost'+'/visualizza_prenotazione/visualizza.php?CF='+info.CF) //reindirizza a visualizzaprenotazione
                                         }
                                     });
                                 }
@@ -153,16 +153,16 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                     }, function(error4, response4, body4){
                                         if(error4) {
                                             log("error", error4.toString())
-                                            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+                                            res.redirect('http://localhost/grafica/error.html') 
                                         } else {
                                             res.cookie('cookie', randcookie) //manda il cookie
-                                            res.redirect(host+'/visualizzaprenotazione?CF='+info.CF) //reindirizza a visualizzaprenotazione
+                                            res.redirect('http://localhost'+'/visualizza_prenotazione/visualizza.php?CF='+info.CF) //reindirizza a visualizzaprenotazione
                                         }
                                     });
                                 }
                                 else {
                                     log("error", error3.toString())
-                                    res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+                                    res.redirect('http://localhost/grafica/error.html') 
                                 }
                                 
                             });
@@ -194,10 +194,10 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                     }, function(error4, response4, body4){
                                         if(error4) {
                                             log("error", error4.toString())
-                                            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+                                            res.redirect('http://localhost/grafica/error.html') 
                                         } else {
                                             res.cookie('cookie', randcookie) //manda il cookie
-                                            res.redirect(host+'/paginadiprenotazione?CF='+info.CF) //reindirizza a paginadiprenotazione
+                                            res.redirect('http://localhost'+'/Paginaprenotazione/paginaprenotazione.php?CF='+info.CF) //reindirizza a paginadiprenotazione
                                         }
                                     });
                                 }
@@ -210,16 +210,16 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                                     }, function(error4, response4, body4){
                                         if(error4) {
                                             log("error", error4.toString())
-                                            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+                                            res.redirect('http://localhost/grafica/error.html') 
                                         } else {
                                             res.cookie('cookie', randcookie) //manda il cookie
-                                            res.redirect(host+'/paginadiprenotazione?CF='+info.CF) //reindirizza a pagina di prenotazione
+                                            res.redirect('http://localhost'+'/Paginaprenotazione/paginaprenotazione.php?CF='+info.CF) //reindirizza a pagina di prenotazione
                                         }
                                     });
                                 }
                                 else {
                                     log("error", error3.toString())
-                                    res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+                                    res.redirect('http://localhost/grafica/error.html') 
 
                                 }                        
                             });
@@ -232,13 +232,13 @@ app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form ini
                 }
                 else {
                     log("error", error2.toString())
-                    res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+                    res.redirect('http://localhost/grafica/error.html') 
                 }
             })
         }
         else {
             log("error", error.toString())
-            res.send("Errore sconosciuto") //fare pagina html specifica e quindi usa res.redirect
+            res.redirect('http://localhost/grafica/error.html') 
         }
     })
 
@@ -251,10 +251,11 @@ app.get('/sendverify', function(req, res){ //chiama la send e manda il messaggio
     }, function(error, response, body){
         if (error) {
             log("error", error.toString())
+            res.redirect('http://localhost/grafica/error.html') 
         }
         else {
             log("info", "si deve controllare la mail")
-            res.send("controlla la mail")
+            res.redirect('http://localhost/HomePage/index.php?from=checkmail')
         }
     })
 })
@@ -275,7 +276,7 @@ app.get('/send',function(req,res){ //manda la mail di verifica con nodemailer
     }, function(error, response, body){
         if (error) {
             log("error", error.toString())
-            res.send("qualcosa non va") //fare pagina html specifica e quindi usa res.redirect
+            res.redirect('http://localhost/grafica/error.html') 
         }
         else {
             paziente=JSON.parse(body)
@@ -293,7 +294,7 @@ app.get('/send',function(req,res){ //manda la mail di verifica con nodemailer
             smtpTransport.sendMail(mailOptions, function(error, response){
                 if(error){
                     log("error", error.toString())
-                    res.end("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
+                    res.redirect('http://localhost/grafica/error.html') 
                 }
                 else{
                     log("info", "mail inviata")
@@ -314,7 +315,7 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
     }, function(error, response, body){
         if (error) {
             log("error", error.toString())
-            res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
+            res.redirect('http://localhost/grafica/error.html') 
             
         }
         else {
@@ -331,7 +332,7 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                 }, function(error2, response2, body2){
                     if(error2) {
                         log("error", error2.toString())
-                        res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
+                        res.redirect('http://localhost/grafica/error.html') 
                     } else {
                         log("info", "mail verificata")
                         request({ //controllo se ha già un cookie
@@ -353,11 +354,11 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                                 }, function(error4, response4, body4){
                                     if(error4) {
                                         log("error", error4.toString())
-                                        res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
+                                        res.redirect('http://localhost/grafica/error.html') 
                                     } else {
                                         log("info", "cookie inviato")
                                         res.cookie('cookie', randcookie) //mando il cookie
-                                        res.redirect(host+'/paginadiprenotazione?CF='+paziente._id) //reindirizzo a paginadiprenotazione
+                                        res.redirect('http://localhost'+'/Paginaprenotazione/paginaprenotazione.php?CF='+paziente._id) //reindirizzo a paginadiprenotazione
                                     }
                                 });
                             }
@@ -370,17 +371,17 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
                                 }, function(error4, response4, body4){
                                     if(error4) {
                                         log("error", error4.toString())
-                                        res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
+                                        res.redirect('http://localhost/grafica/error.html') 
                                     } else {
                                         log("info", "cookie inviato")
                                         res.cookie('cookie', randcookie) //invio il nuovo cookie
-                                        res.redirect(host+'/paginadiprenotazione?CF='+paziente._id) //reindirizzo a paginadiprenotazione
+                                        res.redirect('http://localhost'+'/Paginaprenotazione/paginaprenotazione.php?CF='+paziente._id) //reindirizzo a paginadiprenotazione
                                     }
                                 });
                             }
                             else {
                                 log("error", error3.toString())
-                                res.send("qualcosa non va"); //fare pagina html specifica e quindi usa res.redirect
+                                res.redirect('http://localhost/grafica/error.html') 
                             }                        
                         });
                     }
@@ -473,7 +474,7 @@ app.get('/got_token', function (req, res) {
     function Callback(err, httpResponse, body) {
       if (err) {
         log("error", err.toString())
-        return console.error('upload failed:', err);
+        return
       }
       else {
         var info = JSON.parse(body);
@@ -502,7 +503,8 @@ app.get('/got_token', function (req, res) {
           }
           dataeorainizio=new Date(dataeora)
           dataeorafine=new Date()
-          dataeorafine.setTime(dataeorainizio.getTime() + 30*60*1000)
+          dataeorafine.setTime(dataeorainizio.getTime() - 90*60*1000)
+          dataeorainizio.setTime(dataeorafine.getTime() - 30*60*1000)
           event.start.dateTime = dataeorainizio.toISOString()
           event.end.dateTime = dataeorafine.toISOString()
         
@@ -518,8 +520,7 @@ app.get('/got_token', function (req, res) {
           request(options, function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
                 log("info","evento creato in calendario utente")
-                res.send("evento creato");
-                //res.redirect(paginavisualizzaprenotazione)
+                res.redirect("http://localhost/Success/success.html")
             }
             else {
                 log("error", error.toString())

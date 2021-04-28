@@ -1,47 +1,18 @@
-$('#formcf').submit(function (e) {
+$(document).ready(function () {
+  
+  $('#formcf').submit(function (e) {
   e.preventDefault();
-  $.ajax({
-    url: 'pergiorgia.php?CF=' + $('#InputcodFisc').val(),
-    type: 'get',
-    success: function () {
+  $.get('pergiorgia.php?CF=' + $('#InputcodFisc').val(), function () {
       $('#InputcodFisc').val('')
     }
-  })
+  )
 })
 
 $('#formtelegram').submit(function (e) {
   e.preventDefault();
-  $.ajax({
-    url: 'http://node:3000/telegrammedico',
-    type: 'get',
-  })
+  $.get('http://localhost:3000/telegrammedico')
 })
 
-function adddisp() {
-  $.post('http://node:3000/insertdisp',
-    {
-      token: 'token',
-      giorno: $('#start').val(),
-      orario: $('#appt').val(),
-      totdisponibilita: $('#dispon').val(),
-    }
-  )
-}
-
-function checkcf() {
-  var pattern = /^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$/;
-  var CodiceFiscale = document.getElementById("InputcodFisc");
-
-  if (CodiceFiscale.value.search(pattern) == -1) {
-    alert("Il valore inserito non è un codice fiscale!");
-    CodiceFiscale.value = "";
-    CodiceFiscale.focus();
-    return 0
-  } else {
-    alert("Codice fiscale aggiunto")
-    return 1
-  }
-}
 
 
 function bottonup() {
@@ -74,7 +45,7 @@ function bottonup() {
 }
 
 
-$(document).ready(function () {
+
   $("#myInput").on("keyup", function () {
     var value = $(this).val().toLowerCase();
     $("#divdisp h2").filter(function () {
@@ -106,7 +77,37 @@ $(document).ready(function () {
 
 
   bottonup()
+
 });
+
+function adddisp() {
+  $.post('http://localhost:3000/insertdisp',
+    {
+      token: 'token',
+      giorno: $('#start').val(),
+      orario: $('#appt').val(),
+      totdisponibilita: $('#dispon').val(),
+    }, function() {
+      alert('Disponibilità inserita')
+    }
+  )
+}
+
+
+function checkcf() {
+  var pattern = /^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$/;
+  var CodiceFiscale = document.getElementById("InputcodFisc");
+
+  if (CodiceFiscale.value.search(pattern) == -1) {
+    alert("Il valore inserito non è un codice fiscale!");
+    CodiceFiscale.value = "";
+    CodiceFiscale.focus();
+    return 0
+  } else {
+    alert("Codice fiscale aggiunto")
+    return 1
+  }
+}
 
 
 function update_users_count() {

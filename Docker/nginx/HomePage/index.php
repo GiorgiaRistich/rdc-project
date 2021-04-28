@@ -19,6 +19,11 @@
 </head>
 
 <body>
+  <?php 
+    if(count($_GET)===1 && $_GET["from"]==='checkmail'){
+      echo '<script>alert("Controlla la tua casella email per procedere")</script>';
+    }
+  ?>
 
   <!-- Navigation -->
   <nav class="navbar navbar-light bg-light static-top ml-auto border-info">
@@ -47,23 +52,23 @@
 
 
           <div class="form justify-content-xl-center">
-            <form id="form" method="post" action="nodejs:3000/form_iniziale">
+            <form id="form" method="post" action="http://localhost:3000/form_iniziale">
               <div class="row">
                 <div class="col-12 col-md-9 mb-2 mb-md-2">
-                  <input class="form-control form-control-lg formelem" name="nome" placeholder="nome e cognome"
+                  <input class="form-control form-control-lg formelem" name="name" placeholder="nome e cognome"
                     oninvalid="formerror()" required>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-12 col-md-9 mb-10 mb-md-2">
-                  <input type="text" size="16" maxlength="16" class="form-control form-control-lg formelem"
+                  <input type="text" name="CF" size="16" maxlength="16" class="form-control form-control-lg formelem"
                     pattern="[A-Za-z]{6}[0-9]{2}[A-Za-z]{1}[0-9]{2}[A-Za-z]{1}[0-9]{3}[A-Za-z]{1}"
                     placeholder="codice fiscale" oninvalid="formerror()" required>
                 </div>
 
                 <div class="col-12 col-md-9 mb-10 mb-md-2">
-                  <input type="email" class="form-control form-control-lg formelem" placeholder="email" oninvalid="formerror()"
+                  <input type="email" name="mail" class="form-control form-control-lg formelem" placeholder="email" oninvalid="formerror()"
                     required>
                 </div>
 
@@ -148,7 +153,7 @@
       
        
         <div class="col-lg-6 order-lg-2 text-white showcase-img coppia">
-          <a href=""><img src="documents.png" id="immagine3"></a>
+          <a href="../outApidoc/index.html"><img src="documents.png" id="immagine3"></a>
           <br>
           <a type="button" class="btn btn-lg btn-info" id="bottone2" href="../outApidoc/index.html">Documentazione API</a>
         </div>

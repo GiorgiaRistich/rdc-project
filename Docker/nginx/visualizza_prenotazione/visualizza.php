@@ -19,14 +19,17 @@
     $couchdb = "http://admin:adminpass@couchdb:5984/";
     $res = @file_get_contents($couchdb."cookies/".$CF);
     if ($res===false) {
+        header("location: ../grafica/error.html");
         die();
     }
     $res = json_decode($res, true);
     $coo = $res["cookie"];
     if(!isset($_COOKIE["cookie"])) {
+        header("location: ../grafica/error.html");
         die();
     }
     if ($coo!==$_COOKIE["cookie"]) {
+        header("location: ../grafica/error.html");
         die();
     }
 ?>
@@ -47,7 +50,7 @@
     </div>
 
 <?php
-    $db = pg_connect("host=postgres port=5432 dbname=progettordc user=postgres password=adminpass");
+    $db = pg_connect("host=postgres port=5432 dbname=postgres user=postgres password=adminpass");
     $result = pg_query($db,"SELECT * FROM prenotazioni where CF='".$_GET["CF"]."'");
     $row=pg_fetch_assoc($result);
     $data=explode(" ", $row["datap"]);
@@ -68,7 +71,7 @@
                 </div>
             </td>
             <td>
-                <button onclick="window.open('http:\/\/node:3000/logincalendar?cf='+'<?php echo $_GET['CF'] ?>')" class="noPrint buttons btn btn-primary" id="bcalendar">Aggiungi evento al calendario!</button>
+                <button onclick="window.open('http:\/\/localhost:3000/logincalendar?cf='+'<?php echo $_GET['CF'] ?>')" class="noPrint buttons btn btn-primary" id="bcalendar">Aggiungi evento al calendario!</button>
             </td>
             <td>
                 <button onclick="window.print();" class="noPrint buttons btn btn-primary" id="bstampa">Stampa</button>
@@ -76,7 +79,7 @@
         </tr></table>
     </div>
 
-    <div id="fondo">
+    <div id="fondo" class="noPrint">
         <img src="telegram.png" id="telegram">
         <div id="teletesto"><b>
             <p id="primot">Vuoi ricevere i dettagli della tua prenotazione su Telegram?</p></b><i>

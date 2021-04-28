@@ -24,4 +24,6 @@ function validateForm() {
         alert("Effettuare una scelta")
         return false
     }
+    $(parent.document.getElementsByTagName("*")).css("cursor", "wait")
+    $(document.getElementsByTagName("*")).css("cursor", "wait")
 }
