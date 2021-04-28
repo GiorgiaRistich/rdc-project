@@ -34,10 +34,10 @@
     $p = new fpdf();
     $p->AddPage();
     $p->Image('LogoVacc.jpeg', 30, 0, 150);
-    $p->SetFont('Courier', 'B', 20);
+    $p->SetFont('Helvetica', 'B', 20);
     $p->Text(20, 100, "I dati della tua prenotazione: \n");
     $p->Line(20, 70, 190, 70);
-    $p->SetFont('Courier', '', 16);
+    $p->SetFont('Helvetica', '', 16);
     $p->Text(30, 120, "Codice Fiscale: " . $cf . "\n");
     $p->Text(30, 140, "Nome e Cognome: " . $nome . "\n");
     $p->Text(30, 160, "Email: " . $email . "\n");

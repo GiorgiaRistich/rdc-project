@@ -24,9 +24,10 @@
         
     $ret = pg_query($db, $sql);
     if(!$ret) {
-        echo "Errore nella prenotazione";
+        header("location: ../grafica/error.html");
     } else {
-        echo "Prenotazione effettuata!\n";
+        include '../Mail_PHP/sendmail.php';
+        header("location: ../visualizza_prenotazione/visualizza.php");
     }
 
     $sql = "select giaprenotate from disponibilita where giorno='".$giorno."' and orario='".$ora."'";
