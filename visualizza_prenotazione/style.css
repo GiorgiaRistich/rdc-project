@@ -33,7 +33,7 @@ body {
 }
 
 #dati {
-    margin-top: 5%;
+    margin-top: 3%;
     font-size: x-large;
 }
 
@@ -62,7 +62,7 @@ body {
 }
 
 #buttons {
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 .buttons {
@@ -87,4 +87,24 @@ body {
 
 #tableb{
     margin: 0 auto;
+}
+
+#telegram {
+    width: 35%;
+    float: left;
+}
+
+#fondo {
+    font-size: large;
+    margin: 2% 15% 0 35%;
+    width: 30%;
+}
+
+#teletesto {
+    padding: 1rem 0;
+    margin-left: 40%;
+}
+
+#primot {
+    margin-bottom: 3%;
 }

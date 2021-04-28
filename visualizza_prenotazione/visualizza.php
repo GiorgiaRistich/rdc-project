@@ -60,7 +60,13 @@
         </tr></table>
     </div>
 
-    <p>TELEGRAM QRCODE CHAT BOT</p>
+    <div id="fondo">
+        <img src="telegram.png" id="telegram">
+        <div id="teletesto"><b>
+            <p id="primot">Vuoi ricevere i dettagli della tua prenotazione su Telegram?</p></b><i>
+            <div>Inquadra questo QR-Code e scrivi al bot il tuo Codice Fiscale!</div></i>
+        </div>
+    </div>
 
 </body>
 </html>
