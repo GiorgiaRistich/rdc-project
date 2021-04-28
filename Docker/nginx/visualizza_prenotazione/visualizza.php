@@ -16,7 +16,7 @@
 <body>
 <?php
     $CF = $_GET["CF"];
-    $couchdb = "http://admin:adminpass@2.236.50.195:5984/";
+    $couchdb = "http://admin:adminpass@couchdb:5984/";
     $res = @file_get_contents($couchdb."cookies/".$CF);
     if ($res===false) {
         die();
@@ -47,7 +47,7 @@
     </div>
 
 <?php
-    $db = pg_connect("host=2.236.50.195 port=5432 dbname=progettordc user=postgres password=adminpass");
+    $db = pg_connect("host=postgres port=5432 dbname=progettordc user=postgres password=adminpass");
     $result = pg_query($db,"SELECT * FROM prenotazioni where CF='".$_GET["CF"]."'");
     $row=pg_fetch_assoc($result);
     $data=explode(" ", $row["datap"]);
@@ -68,7 +68,7 @@
                 </div>
             </td>
             <td>
-                <button onclick="window.open('http:\/\/localhost:3000/logincalendar?cf='+'<?php echo $_GET['CF'] ?>')" class="noPrint buttons btn btn-primary" id="bcalendar">Aggiungi evento al calendario!</button>
+                <button onclick="window.open('http:\/\/node:3000/logincalendar?cf='+'<?php echo $_GET['CF'] ?>')" class="noPrint buttons btn btn-primary" id="bcalendar">Aggiungi evento al calendario!</button>
             </td>
             <td>
                 <button onclick="window.print();" class="noPrint buttons btn btn-primary" id="bstampa">Stampa</button>

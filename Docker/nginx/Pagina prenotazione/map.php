@@ -55,7 +55,7 @@
 
       echo '<input type="hidden" name="CF" value="'.$_GET["CF"].'" />';
 
-      $host        = "host = 2.236.50.195";
+      $host        = "host = postgres";
       $port        = "port = 5432";
       $dbname      = "dbname = progettordc";
       $credentials = "user = postgres password=adminpass";

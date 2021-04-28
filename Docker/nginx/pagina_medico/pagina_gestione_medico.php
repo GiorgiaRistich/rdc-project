@@ -61,7 +61,7 @@
     </div>
       <?php
      
-$db = pg_connect("host=2.236.50.195 port=5432 dbname=progettordc user=postgres password=adminpass");
+$db = pg_connect("host=postgres port=5432 dbname=progettordc user=postgres password=adminpass");
 $result = pg_query($db,"SELECT * FROM prenotazioni order by datap");
 echo "<div id='divdisp'>";
 echo "<div class='accordion' id='accordion_prenotazioni' >";

@@ -5,14 +5,14 @@
     $ora = substr($data, 10);
     $data = $giorno." ".$ora;
 
-    $couchdb = "http://admin:adminpass@2.236.50.195:5984/";
+    $couchdb = "http://admin:adminpass@couchdb:5984/";
     $res = file_get_contents($couchdb."patients/".$CF);
     $res = json_decode($res, true);
     $nome = $res["name"];
     $mail = $res["mail"];
     
 
-    $host        = "host=2.236.50.195";
+    $host        = "host=postgres";
     $port        = "port=5432";
     $dbname      = "dbname = progettordc";
     $credentials = "user = postgres password=adminpass";
