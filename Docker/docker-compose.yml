@@ -3,6 +3,7 @@
 #sudo docker-compose ps
 #docker stop docker_nodejs_1
 #docker logs docker_nodejs_1
+#docker exec -ti docker_php_1 /bin/bash
 
 version: '3'
 
