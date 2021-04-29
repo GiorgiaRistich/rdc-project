@@ -1,4 +1,12 @@
 <?php
+    if(isset($_COOKIE["LOGIN"])) {
+      if ("6644b56f6215447b5af219a41923c5a9"===$_COOKIE["LOGIN"]) {
+        header("location: pagina_gestione_medico.php");
+      }
+    }
+?>
+
+<?php
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $codPassword = md5($_POST["inputPassword"]);
     if ($_POST["inputEmail"] === "medico@gmail.com") #medico@gmail.com
@@ -20,7 +28,7 @@
       echo('<script>alert("mail o password sbagliata")</script>');
     }
   }
-  ?>
+?>
   
 <!DOCTYPE html>
 <html lang="en">
