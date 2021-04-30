@@ -27,7 +27,7 @@ services:
         ports:
             - 5432:5432
         volumes:
-            - ./volumes/postgres:/var/lib/postgresql/data
+            - ./volumes/postgres:/docker-entrypoint-initdb.d
         restart: on-failure
 
 

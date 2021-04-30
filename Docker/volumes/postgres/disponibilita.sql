@@ -1,0 +1,63 @@
+CREATE TABLE public.disponibilita (
+    giorno date NOT NULL,
+    orario time without time zone NOT NULL,
+    totdisponibilita integer NOT NULL,
+    giaprenotate integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE public.disponibilita OWNER TO postgres;
+
+COPY public.disponibilita (giorno, orario, totdisponibilita, giaprenotate) FROM stdin;
+2021-06-01	09:00:00	7	5
+2021-06-05	09:00:00	3	2
+2021-06-01	10:30:00	5	5
+2021-06-01	16:00:00	5	2
+2021-06-04	09:00:00	8	6
+2021-06-04	10:00:00	4	3
+2021-06-09	11:00:00	2	2
+2021-06-15	17:00:00	4	2
+2021-06-15	19:00:00	5	2
+2021-06-01	18:00:00	5	4
+2021-06-05	10:00:00	8	4
+2021-06-12	09:00:00	6	4
+2021-06-10	10:00:00	3	3
+2021-06-02	10:00:00	4	0
+2021-06-03	10:00:00	4	0
+2021-06-03	12:00:00	7	0
+2021-06-06	10:00:00	7	0
+2021-06-06	11:00:00	3	0
+2021-06-06	12:00:00	6	0
+2021-06-07	10:00:00	4	0
+2021-06-07	11:30:00	3	0
+2021-06-08	10:00:00	4	0
+2021-06-08	12:00:00	7	0
+2021-06-08	16:30:00	6	0
+2021-06-09	10:00:00	7	0
+2021-06-09	10:30:00	4	0
+2021-06-09	11:30:00	5	0
+2021-06-09	12:00:00	6	0
+2021-06-10	11:30:00	3	0
+2021-06-11	10:00:00	4	0
+2021-06-11	12:00:00	7	0
+2021-06-13	10:30:00	4	0
+2021-06-13	11:00:00	3	0
+2021-06-13	11:30:00	5	0
+2021-06-13	12:00:00	6	0
+2021-06-03	16:30:00	6	1
+2021-06-06	11:30:00	5	1
+2021-06-11	16:30:00	6	1
+2021-06-02	11:30:00	3	1
+2021-06-06	10:30:00	4	2
+2021-06-24	09:00:00	5	3
+2021-06-13	10:00:00	7	1
+\.
+
+
+ALTER TABLE public.disponibilita
+    ADD CONSTRAINT const CHECK ((totdisponibilita >= giaprenotate)) NOT VALID;
+
+
+ALTER TABLE ONLY public.disponibilita
+    ADD CONSTRAINT disponibilita_pkey PRIMARY KEY (giorno, orario);
+
