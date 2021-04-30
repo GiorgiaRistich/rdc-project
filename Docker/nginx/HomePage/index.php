@@ -63,7 +63,7 @@
               <div class="row">
                 <div class="col-12 col-md-9 mb-10 mb-md-2">
                   <input type="text" name="CF" size="16" maxlength="16" class="form-control form-control-lg formelem"
-                    pattern="[A-Za-z]{6}[0-9]{2}[A-Za-z]{1}[0-9]{2}[A-Za-z]{1}[0-9]{3}[A-Za-z]{1}"
+                    pattern="[A-Z]{6}[0-9]{2}[A-Z]{1}[0-9]{2}[A-Z]{1}[0-9]{3}[A-Z]{1}"
                     placeholder="codice fiscale" oninvalid="formerror()" required>
                 </div>
 

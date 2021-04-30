@@ -12,3 +12,7 @@ error: relation "prenotazioni" does not exist
 Richiesta pagina non valida
 Richiesta pagina non validaRichiesta pagina non valida
 Richiesta pagina non valida
+Error: Client network socket disconnected before secure TLS connection was established
+Error: getaddrinfo ENOTFOUND api.telegram.org
+Error: getaddrinfo ENOTFOUND api.telegram.org
+Richiesta pagina non valida

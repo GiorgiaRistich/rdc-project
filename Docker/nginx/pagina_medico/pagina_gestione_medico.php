@@ -45,7 +45,7 @@
           <li><a class="nav-link scrollto" href="#codicefiscale">Aggiungi Codice Fiscale</a></li>
           <li><a class="nav-link scrollto" href="#slot_temporale">Slot Temporale</a></li>
           <li><a class="nav-link scrollto " href="#telegram">Telegram</a></li>
-          
+          <li><a class="nav-link scrollto " onclick="logout()" href="https://localhost/HomePage/index.php">Log Out</a></li>
         </ul>
         
       </nav><!-- .navbar -->

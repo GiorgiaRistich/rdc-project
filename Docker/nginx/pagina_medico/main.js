@@ -61,7 +61,6 @@ function bottonup() {
   $(".date-intl").each(function (elem) {
     const date = new Date(this.innerHTML);
     this.innerHTML = localeFormat(date);
-    console.log(this.innerHTML)
   })
 
 
@@ -168,4 +167,8 @@ function updateonscroll() {
   update_users_count2();
   update_users_count3();
   update_users_count4();
+}
+
+function logout() {
+  document.cookie = "LOGIN=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/pagina_medico;";
 }
