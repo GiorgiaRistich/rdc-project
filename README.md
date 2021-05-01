@@ -1,30 +1,119 @@
 # rdc-project
-
-
--REQUISITI RDC 
-1.Il servizio REST che implementate (lo chiameremo SERV) deve offrire a terze parti delle API documentate
-2.SERV si deve interfacciare con almeno due servizi REST di terze parti (e.g. google maps)
-3.Almeno uno dei servizi REST esterni deve essere “commerciale” (es: twitter, google, facebook, pubnub, parse, firbase etc)
-4.Almeno uno dei servizi REST esterni deve richiedere oauth (e.g. google calendar), Non è sufficiente usare oauth solo per verificare  le credenziali è necessario accedere al servizio
-5.La soluzione deve prevedere l'uso di protocolli asincroni. Per esempio Websocket e/o AMQP (o simili es MQTT)
-6.Il progetto deve essere su GIT (GITHUB, GITLAB ...) e documentato con un README che illustri almeno 
-  -scopo del progetto
-  -architettura di riferimento e tecnologie usate (con un diagramma)
-  -chiare indicazioni sul soddisfacimento dei requisiti
-  -istruzioni per l'installazione
-  -istruzioni per il test
-
--REQUISITI LTW
-1.HTML
-2.Bootstrap 
-3.CSS 
-4.JavaScript 
-5.JQuery e/o Vue.js sul lato client
-6.PHP (o altri linguaggi di scripting lato server) e un
-database relazionale sul lato server
-
-PS: ho iniziato a leggere l'esercitazione di PHP dell'anno scorso e ho provato ad eseguire il codice di login e di registrazione(ho già messo i file); Mi danno qualche problema... Dobbiamo rivederli insieme
-
-NOTA: Per documentare Api bisogna usare https://apidocjs.com/
-
-README
+<h1>Info sul Progetto</h1>
+    <ol>
+        <li>
+            <p><b>Scopo del progetto:</b></p>
+            <p>Il progetto è stato concepito per supplire alla mancanza di una piattaforma che aiutasse i Medici di Base a gestire le prenotazioni per i vaccini anti Covid-19. Si suddivide in un’interfaccia per il medico e un’interfaccia per i pazienti, oltre a fornire delle API REST.
+            <ul>
+                <li>
+                    L’interfaccia del medico, accessibile tramite login, consente di: visualizzare le prenotazioni effettuate, autorizzare un nuovo codice fiscale a prenotare, inserire nuove disponibilità in calendario, inviarsi l’elenco delle prenotazioni effettuate tramite Telegram
+                </li>
+                <li>
+                    L’interfaccia del paziente consente di: prenotare un nuovo appuntamento (se autorizzati) in uno slot temporale disponibile, visualizzare la propria prenotazione, ricevere la conferma via mail o tramite Telegram, stampare o scaricare il pdf della ricevuta, inserire l’appuntamento nel proprio calendario google
+                </li>
+                <li>
+                    Sono fornite 4 API REST, documentate tramite apiDoc, che consentono di: richiedere l’elenco dei pazienti registrati o le informazioni riguardo un paziente specifico, richiedere l’elenco delle prenotazioni effettuate o le informazioni riguardo una prenotazione specifica, inserire una nuova disponibilità in calendario, esportare i file di log
+                </li>
+            </ul>
+            </p>
+        </li>
+        <li>
+            <p><b>Architetture di riferimento e tecnologie usate:</b></p>
+            <p>
+                <ul>
+                    <li>
+                        Server web Nginx
+                    </li>
+                    <li>
+                        Application server NodeJS
+                    </li>
+                    <li>
+                        Database non relazionale CouchDB
+                    </li>
+                    <li>
+                        Database relazionale PostgresSQL
+                    </li>
+                    <li>
+                        Message broker RabbitMQ
+                    </li>
+                    <li>
+                        Interprete PHP
+                    </li>
+                    <li>
+                        Programmazione lato client: HTML, CSS (+ bootstrap), JavaScript (+ JQuery)
+                    </li>
+                    <li>
+                        SSL per rendere criptata la comunicazione fra client e web server
+                    </li>
+                    <li>
+                        File .yml per la configurazione dei container Docker
+                    </li>
+                </ul>
+            </p>
+            <img src="Diagramma.jpg" width="80%">
+        </li>
+        <li>
+            <p><b>Soddisfacimento dei requisiti:</b></p>
+            <p>
+                <ul>
+                    <li>
+                        Vengono offerte 4 API REST. La documentazione è accessibile dalla Home Page del sito 
+                    </li>
+                    <li>
+                        Il server NodeJS si interfaccia con servizi REST offerti da: GitHub, Telegram, Google Calendar (tramite OAuth)
+                    </li>
+                    <li>
+                        Si utilizza AMQP come protocollo asincrono per la gestione dei log
+                    </li>
+                </ul>
+            </p>
+        </li>
+        <li>
+            <p><b>Istruzioni per l'installazione:</b></p>
+            <p>per il corretto funzionamento dell’applicazione è necessario installare Docker e Docker Compose sulla propria macchina. Per l’installazione è necessario clonare la repository GitHub, aprire un terminale nella directory “Docker” del progetto e usare il comando&nbsp;&nbsp;&nbsp;<code>$ docker-compose up -d</code></p>
+        </li>
+        <li>
+            <p><b>Per effettuare un test si possono eseguire le seguenti operazioni:</b></p>
+            <p>
+                <ul>
+                    <li>
+                        Effettuare il login nella pagina del medico con le seguenti credenziali: username <i>medico@gmail.com</i>, password <i>passwordmedico</i>
+                    </li>
+                    <li>
+                        Aggiungere il proprio codice fiscale nella sezione apposita
+                    </li>
+                    <li>
+                        Aggiungere uno slot temporale in cui si desidera prenotare
+                    </li>
+                    <li>
+                        Effettuare il logout dalla pagina del medico
+                    </li>
+                    <li>
+                        Nella Home Page si può ora effettuare una prenotazione come pazienti: è necessario inserire il proprio codice fiscale, il proprio nome e cognome e la propria mail
+                    </li>
+                    <li>
+                        Per proseguire bisogna verificare la propria mail cliccando sul link ricevuto (dopo aver controllato la correttezza dei dati)
+                    </li>
+                    <li>
+                        Si viene reindirizzati quindi alla pagina di prenotazione nella quale scegliere uno slot temporale
+                    </li>
+                    <li>
+                        Infine viene visualizzata la pagina di conferma in cui è possibile stampare la prenotazione, scaricare il PDF, inserire l’appuntamento nel proprio calendario google e seguire le istruzioni per ricevere la prenotazione su Telegram
+                    </li>
+                    <li>
+                        Una ricevuta di prenotazione viene inviata in automatico alla mail inserita in fase di registrazione
+                    </li>
+                    <li>
+                        Dalla Home Page si può ora accedere nuovamente nella pagina del medico per visualizzare la propria prenotazione nell’elenco e per far ricevere al medico l’elenco delle prenotazioni su Telegram
+                    </li>
+                    <li>
+                        Inserendo nuovamente nella Home Page gli stessi dati usati in fase di prenotazione, è possibile essere reindirizzati nuovamente alla pagina di conferma
+                    </li>
+                    <li>
+                        Nella pagina di documentazione delle API sono inserite le informazioni per testarle. Il token per autenticarsi è: <i>token</i>
+                    </li>
+                </ul>
+            </p>
+        </li>
+    </ol>
+    
