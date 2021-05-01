@@ -144,7 +144,7 @@
       <div class="row no-gutters">
        
         <div class="col-lg-6 text-white showcase-img coppia">
-          <a href=""><img src="info.png" id="immagine2" href="../Info/info.html"></a>
+          <a href="../Info/info.html"><img src="info.png" id="immagine2"></a>
           <br>
           <a type="button" class="btn btn-lg btn-info" id="bottone1" href="../Info/info.html">Info progetto</a>
           

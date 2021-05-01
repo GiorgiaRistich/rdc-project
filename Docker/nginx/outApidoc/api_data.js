@@ -125,7 +125,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "API_offerte/apidocSource.js",
+    "filename": "API/apisource.js",
     "groupTitle": "Inserisci_Disponibilità"
   },
   {
@@ -214,7 +214,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "API_offerte/apidocSource.js",
+    "filename": "API/apisource.js",
     "groupTitle": "Log"
   },
   {
@@ -358,7 +358,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "API_offerte/apidocSource.js",
+    "filename": "API/apisource.js",
     "groupTitle": "Prenotazioni"
   },
   {
@@ -502,7 +502,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "API_offerte/apidocSource.js",
+    "filename": "API/apisource.js",
     "groupTitle": "Registrati"
   }
 ] });
