@@ -58,7 +58,7 @@
   <br><br><br><br>
     <div class="container">
     <div>  
-      <h1 class="h1pren">Prenotazioni Settimanali</h1>
+      <h1 class="h1pren">Prenotazioni effettuate</h1>
       <input id="myInput" type="text" placeholder="Search.." class="search">
     </div>
       <?php
