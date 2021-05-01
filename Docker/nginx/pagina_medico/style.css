@@ -398,7 +398,7 @@ b{
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background-color: #0c6eee;
+  background-color: rgb(15, 32, 68);
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -411,7 +411,6 @@ b{
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
 }
 
 .testimonials .section-header {
@@ -464,4 +463,10 @@ b{
   margin-top:4%;
   margin-left: 28%;
   width: 20%;
+}
+
+.giur {
+  text-align: right;
+  padding-right: 12%;
+  color: white;
 }

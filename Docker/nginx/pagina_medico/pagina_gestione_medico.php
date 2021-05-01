@@ -224,7 +224,6 @@ echo "</div>";
 </blockquote>
   </div>
 </div>
-
 <br><br>
 <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0"  class="active"></li>
@@ -235,6 +234,7 @@ echo "</div>";
   </div>
 </div>
       
+<p class="giur"><cite>Giuramento di Ippocrate</cite></p>
     </section><!-- End Giuramento Section -->
 
     <!-- ======= Slot Temporale Section ======= -->
@@ -336,6 +336,7 @@ echo "</div>";
 
   </div>
       </div>
+      <p class="giur"><cite>Giuramento di Ippocrate</cite></p>
     </section><!-- End Giuramento Section -->
 
     <!-- ======= Telegram Section ======= -->
@@ -439,6 +440,7 @@ echo "</div>";
 
   </div>
       </div>
+      <p class="giur"><cite>Giuramento di Ippocrate</cite></p>
     </section><!-- End Giuramento Section -->
 
     
