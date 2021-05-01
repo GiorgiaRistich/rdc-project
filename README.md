@@ -50,7 +50,7 @@
                     </li>
                 </ul>
             </p>
-            <img src="Diagramma.jpg" width="80%">
+            <img src="Docker/nginx/Info/Diagramma.jpg">
         </li>
         <li>
             <p><b>Soddisfacimento dei requisiti:</b></p>
