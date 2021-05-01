@@ -1,4 +1,3 @@
-# rdc-project
 <h1>Info sul Progetto</h1>
     <ol>
         <li>
