@@ -48,7 +48,6 @@ resoconto inviato al medico
 API disponibilità inserita
 si controlla che l'assistito si sia registrato
 si controlla che l'assistito si sia registrato
-si controlla che l'assistito si sia registrato
 mail inviata
 si deve controllare la mail
 mail verificata
@@ -57,12 +56,9 @@ resoconto inviato al medico
 resoconto inviato al medico
 evento creato in calendario utente
 evento creato in calendario utente
-evento creato in calendario utente
 dati inviati al paziente
 resoconto inviato al medico
 evento creato in calendario utente
-dosi calcolate
-dosi calcolate
 dosi calcolate
 dosi calcolate
 dosi calcolate
@@ -94,7 +90,6 @@ dosi calcolate
 dosi calcolate
 si controlla che l'assistito si sia registrato
 si controlla che l'assistito si sia registrato
-evento creato in calendario utente
 evento creato in calendario utente
 evento creato in calendario utente
 si controlla che l'assistito si sia registrato
@@ -131,8 +126,6 @@ dati inviati al paziente
 dati inviati al paziente
 dosi calcolate
 dosi calcolate
-dosi calcolate
-API logfile restituito
 API logfile restituito
 API logfile restituito
 API registrati restituiti
@@ -141,10 +134,8 @@ API prenotazione restituita
 API prenotazioni restituite
 resoconto inviato al medico
 resoconto inviato al medico
-resoconto inviato al medico
 API disponibilità inserita
 API disponibilità inserita
-dosi calcolate
 dosi calcolate
 dosi calcolate
 CF non presente
@@ -160,10 +151,6 @@ mail verificata
 cookie inviato
 si controlla che l'assistito si sia registrato
 si controlla che l'assistito si sia registrato
-si controlla che l'assistito si sia registrato
-si controlla che l'assistito si sia registrato
-si controlla che l'assistito si sia registrato
-si controlla che l'assistito si sia registrato
 resoconto inviato al medico
 dosi calcolate
 dosi calcolate
@@ -203,11 +190,6 @@ inserimento paziente
 pronti a verificare
 mail inviata
 si deve controllare la mail
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
 dosi calcolate
 dosi calcolate
 CF non presente
@@ -216,12 +198,8 @@ si controlla che l'assistito si sia registrato
 si deve ricontrollare i dati
 si controlla che l'assistito si sia registrato
 si controlla che l'assistito si sia registrato
-si controlla che l'assistito si sia registrato
-si controlla che l'assistito si sia registrato
-si controlla che l'assistito si sia registrato
 si deve controllare la mail
 mail inviata
-si controlla che l'assistito si sia registrato
 si controlla che l'assistito si sia registrato
 si controlla che l'assistito si sia registrato
 inserimento paziente
@@ -258,27 +236,7 @@ API registrati restituiti
 dosi calcolate
 dosi calcolate
 dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
-dosi calcolate
 resoconto inviato al medico
-dosi calcolate
-dosi calcolate
 dosi calcolate
 dosi calcolate
 dosi calcolate
@@ -304,3 +262,4 @@ dati inviati al paziente
 CF non presente
 resoconto inviato al medico
 dati inviati al paziente
+dosi calcolate

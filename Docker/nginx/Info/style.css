@@ -1,0 +1,16 @@
+body {
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: large;
+    padding: 2% 5% 5% 3%;
+    background-color: #f4f4f4;
+}
+li {
+    margin-top: 0.5%;
+}
+img {
+    border-radius: 3%;
+    box-shadow: 5px 5px 5px 3px #efefef;
+}
+code {
+    color: rgb(98, 154, 238, 300%);
+}
