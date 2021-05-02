@@ -284,11 +284,11 @@ app.get('/send',function(req,res){ //manda la mail di verifica con nodemailer
             var mailOptions={
                 from: '"Verifica la mail" <'+mailuser+'>',
                 to : paziente.mail,
-                subject : "Per favore conferma il tuo account mail",
-                html : "Buongiorno,<br> se i suoi dati sono corretti clicchi sul link. <br>"+
-                    "Altrimenti ripeta la procedura di prenotazione.<br><br>"+
+                subject : "Conferma il tuo account email",
+                html : "Buongiorno,<br> se i tuoi dati sono corretti clicca sul link. <br>"+
+                    "Altrimenti ripeti la procedura di prenotazione.<br><br>"+
                     "Nome: "+paziente.name + "<br>Codice Fiscale: "+paziente._id+"<br><br>"+
-                    "<a href="+link+">Click here to verify</a>"
+                    "<a href="+link+">Premi qui per verificare</a>"
             } //si richiede di verificare la mail solo se i dati sono corretti
             
             smtpTransport.sendMail(mailOptions, function(error, response){
