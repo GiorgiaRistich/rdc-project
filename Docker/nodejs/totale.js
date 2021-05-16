@@ -1051,7 +1051,7 @@ app.get('/logfile', function (req, res) {
 
 app.use(function(req, res){
     log("error","Richiesta pagina non valida")
-    res.status(404).send("404 Error - Not Found");
+    res.status(404).redirect('http://localhost/grafica/error.html')
 });
 
 
