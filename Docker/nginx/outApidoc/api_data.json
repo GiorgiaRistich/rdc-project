@@ -125,8 +125,13 @@
         }
       ]
     },
-    "filename": "API/apisource.js",
-    "groupTitle": "Inserisci_Disponibilità"
+    "filename": "SourceApidoc/apisource.js",
+    "groupTitle": "Inserisci_Disponibilità",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/insertdisp"
+      }
+    ]
   },
   {
     "type": "get",
@@ -214,8 +219,13 @@
         }
       ]
     },
-    "filename": "API/apisource.js",
-    "groupTitle": "Log"
+    "filename": "SourceApidoc/apisource.js",
+    "groupTitle": "Log",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/logfile"
+      }
+    ]
   },
   {
     "type": "get",
@@ -358,8 +368,13 @@
         }
       ]
     },
-    "filename": "API/apisource.js",
-    "groupTitle": "Prenotazioni"
+    "filename": "SourceApidoc/apisource.js",
+    "groupTitle": "Prenotazioni",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/prenotazioni"
+      }
+    ]
   },
   {
     "type": "get",
@@ -502,7 +517,12 @@
         }
       ]
     },
-    "filename": "API/apisource.js",
-    "groupTitle": "Registrati"
+    "filename": "SourceApidoc/apisource.js",
+    "groupTitle": "Registrati",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/registrati"
+      }
+    ]
   }
 ]

@@ -1,4 +1,4 @@
-//launch with 'npx apidoc -i API_offerte -o outApidoc'
+//launch with 'npx apidoc -i SourceApidoc -o outApidoc'
 
 
 
