@@ -23,12 +23,16 @@ body {
 
 #alto {
     height: 3.5rem;
-    background-color: #629aee;
     color: rgb(41, 41, 41);
+    margin-top: 1.5%;
 }
 
 #divif {
-    margin-top: 3%;
+    background-color: rgb(255, 255, 255, 0.8);
+    width: 950px;
+    margin: auto;
+    border-radius: 15px;
+    margin-top: 1.5%;
 }
 
 #primula {
@@ -58,5 +62,37 @@ body {
   
     to {
       margin-right: 20%;
+    }
+}
+
+
+.bg {
+    animation:slide 4s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, rgb(51, 117, 204) 50%, #09f 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.4;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+    height: 100%;
+}
+  
+.bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:5s;
+}
+  
+.bg3 {
+    animation-duration:6s;
+}
+
+@keyframes slide {
+    0% {
+        transform:translateX(-25%);
+    }
+    100% {
+        transform:translateX(25%);
     }
 }
