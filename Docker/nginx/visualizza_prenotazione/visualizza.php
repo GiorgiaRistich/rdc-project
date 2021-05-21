@@ -32,6 +32,7 @@
         header("location: ../grafica/error.html");
         die();
     }
+    echo "<p hidden id='codicefiscale'>".$CF."</p>";
 ?>
     <div id="alto">
         <table id="header">
@@ -49,19 +50,15 @@
         </table>
     </div>
 
-<?php
-    $db = pg_connect("host=postgres port=5432 dbname=postgres user=postgres password=adminpass");
-    $result = pg_query($db,"SELECT * FROM prenotazioni where CF='".$_GET["CF"]."'");
-    $row=pg_fetch_assoc($result);
-    $data=explode(" ", $row["datap"]);
-    echo "<div id='dati'><table id='tdati'>";
-    echo "<tr><td class='rigsx'>Codice Fiscale</td><td class='rigdx'>".$row["cf"]."</td></tr>";
-    echo "<tr><td class='rigsx'>Nome e Cognome</td><td class='rigdx'>".$row["nome"]."</td></tr>";
-    echo "<tr><td class='rigsx'>Indirizzo email</td><td class='rigdx'>".$row["email"]."</td></tr>";
-    echo "<tr><td class='rigsx'>Data prenotazione</td><td class='rigdx'>".$data[0]."</td></tr>";
-    echo "<tr><td class='rigsx'>Orario prenotazione</td><td class='rigdx'>".$data[1]."</td></tr>";
-    echo "</table></div>";
-?>
+
+    <div id='dati'><table id='tdati'>
+    <tr><td class='rigsx'>Codice Fiscale</td><td class='rigdx' id="elemcf"></td></tr>
+    <tr><td class='rigsx'>Nome e Cognome</td><td class='rigdx' id="elemnc"></td></tr>
+    <tr><td class='rigsx'>Indirizzo email</td><td class='rigdx' id="elemmail"></td></tr>
+    <tr><td class='rigsx'>Data prenotazione</td><td class='rigdx' id="elemdata"></td></tr>
+    <tr><td class='rigsx'>Orario prenotazione</td><td class='rigdx' id="elemora"></td></tr>
+    </table></div>
+
     <div id="buttons">
         <table id="tableb"><tr>
             <td>
