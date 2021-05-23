@@ -37,7 +37,8 @@ var smtpTransport = nodemailer.createTransport({    //necessario per l'invio di 
     auth: {
         user: mailuser,
         pass: mailpass
-    }
+    },
+    tls: { rejectUnauthorized: false }
 });
 
 app.post('/form_iniziale', function(req, res){  //funzione chiamata dal form iniziale

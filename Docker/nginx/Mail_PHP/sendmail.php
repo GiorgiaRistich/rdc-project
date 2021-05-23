@@ -1,9 +1,11 @@
 <?php
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
 
     require 'PHPMailer.php';
     require 'SMTP.php';
+    require 'Exception.php';
 
 
     $host        = "host = postgres";
@@ -71,8 +73,11 @@
     $body .= '<p style="font-size:medium;">Data prenotazione: '.$data[0].'</p></br>';
     $body .= '<p style="font-size:medium;">Ora prenotazione: '.$data[1].'</p></br>';
     $mail->Body = $body;
-
+    try{
     $mail->send();
-
+    }
+    catch(Exception $e) {
+        header("location: ../Success/exitiframe.php?CF=".$_GET["CF"]);
+    }
     header("location: ../Success/exitiframe.php?CF=".$_GET["CF"]);
 ?>
