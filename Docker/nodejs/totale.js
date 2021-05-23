@@ -403,48 +403,6 @@ app.get('/verify',function(req,res){ //viene chiamata dal link nella mail di ver
 
 
 
-app.get('/dosi', function(req, res){
-  
-    request.get(
-      
-        {
-            url: 'https://api.github.com/repos/italia/covid19-opendata-vaccini/contents/dati/vaccini-summary-latest.json',
-            method: 'GET',
-            headers: {
-                'User-Agent':'Api'
-            },
-        }, 
-        
-        
-        function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-            
-                var info = JSON.parse(body);
-
-                var text = Buffer.from(info.content, 'base64').toString();
-                
-                var corpo = JSON.parse(text)
-
-                var dositotali=0
-                corpo.data.forEach(function(item){
-                    dositotali=dositotali+item.dosi_somministrate
-                })
-                log("info","dosi calcolate")
-                lastdosi=dositotali.toString()
-                res.send(dositotali.toString())
-            }
-            else {
-                res.send(lastdosi)
-            }
-        }
-    );
-
-});
-
-
-
-
-
 app.get('/logincalendar', function (req, res) { //devo avere querystring con CF=...
   res.redirect("https://accounts.google.com/o/oauth2/v2/auth?" +
     "scope=https://www.googleapis.com/auth/calendar&response_type=code&redirect_uri=" +
@@ -663,6 +621,48 @@ function amqplistenerror(){
 amqplisteninfo()
 amqplistenerror()
 
+
+
+
+
+
+app.get('/dosi', function(req, res){
+  
+    request.get(
+      
+        {
+            url: 'https://api.github.com/repos/italia/covid19-opendata-vaccini/contents/dati/vaccini-summary-latest.json',
+            method: 'GET',
+            headers: {
+                'User-Agent':'Api'
+            },
+        }, 
+        
+        
+        function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+            
+                var info = JSON.parse(body);
+
+                var text = Buffer.from(info.content, 'base64').toString();
+                
+                var corpo = JSON.parse(text)
+
+                var dositotali=0
+                corpo.data.forEach(function(item){
+                    dositotali=dositotali+item.dosi_somministrate
+                })
+                log("info","dosi calcolate")
+                lastdosi=dositotali.toString()
+                res.send(dositotali.toString())
+            }
+            else {
+                res.send(lastdosi)
+            }
+        }
+    );
+
+});
 
 
 
